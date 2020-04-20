@@ -34,11 +34,10 @@ public class HospitalManagementSystem {
 
     void mainMenu(){
         Scanner option = new Scanner(System.in);
-
         boolean flag = true;
         while (flag) {
-            System.out.println("\n\n==========================================================================");
-            System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"Welcome to Hospital Management System...!"+ANSI_RESET);
+            System.out.println("\n==========================================================================");
+            System.out.println("\n"+ANSI_CYAN_BACKGROUND+"Welcome to Hospital Management System...!"+ANSI_RESET);
             System.out.println("1. SignUp");
             System.out.println("2. Login");
             System.out.println("0. Exit");
@@ -67,8 +66,8 @@ class LoginMenu{
     String userType;
     void loginMenu() {
         Scanner loginOption = new Scanner(System.in);
-        System.out.println("\n\n==========================================================================");
-        System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"Welcome to Login Menu"+ANSI_RESET);
+        System.out.println("\n==========================================================================");
+        System.out.println("\n"+ANSI_CYAN_BACKGROUND+"Welcome to Login Menu"+ANSI_RESET);
         System.out.print("Please Enter your Username: ");
         String username = loginOption.nextLine();
         System.out.print("Please Enter your Password: ");
@@ -76,6 +75,7 @@ class LoginMenu{
         
         if(isValidLoginCredentials(username,password)){
             System.out.println("Login Successfull");
+            System.out.println("Redirecting to your Dashboard");
                 switch (userType) {
                 case "doctor":
                     DoctorLogin doctorObj = new DoctorLogin();
@@ -83,6 +83,7 @@ class LoginMenu{
                     break;
                 case "patient":
                     PatientLogin patientObj = new PatientLogin();
+                    patientObj.patientDashboard(username);
                     System.out.println("Welcome to patient's dashboard \n \n");
                     break;
                 case "receptionist":
@@ -90,11 +91,11 @@ class LoginMenu{
                     System.out.println("Welcome to receptionist dashboard \n \n");
                     break;
             }
-            System.out.println("Redirecting to your Dashboard");
         }
     }
     boolean isValidLoginCredentials(String username, String password){
         //pallavi fetch data from excel and validate credentials.
-        return false;
+        userType = "patient";
+        return true;
     }
 }

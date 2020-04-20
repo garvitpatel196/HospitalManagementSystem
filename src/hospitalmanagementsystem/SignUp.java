@@ -27,16 +27,23 @@ public class SignUp {
             String fName = signUpOption.nextLine();
             System.out.print("Please Enter your Last Name: ");
             String lName = signUpOption.nextLine();
-            System.out.print("Please Enter your Birth Date (DD-MM-YYYY): ");
-            String dob = signUpOption.nextLine();
+            System.out.print("Please Enter your Email ID: ");
+            String email = signUpOption.nextLine().toLowerCase();
             System.out.print("Please Enter your Username: ");
             String username = signUpOption.nextLine();
             System.out.print("Please Enter your Password: ");
             String password = signUpOption.nextLine();  
             System.out.print("Please Confirm your Password: ");
             String confirmPassword = signUpOption.nextLine();
+            System.out.print("Please Enter your Phone number: ");
+            String phno = signUpOption.nextLine();
+            System.out.print("Please Enter your Birth Date (DD-MM-YYYY): ");
+            String dob = signUpOption.nextLine();
+            System.out.print("Please Enter your Gender M/F/O: ");
+            String gender = signUpOption.nextLine();
+            
 
-            if(checkConstraints(fName, lName, dob, username, password, confirmPassword)){
+            if(checkConstraints(fName, lName, email, username, password, confirmPassword,phno, dob, gender)){
                 msg=ANSI_GREEN+"Suucessfully Signed Up.!"+ANSI_RESET;
                 System.out.println(msg);
                 System.out.println("\n\nRedirecting to main menu....\n\n");
@@ -63,7 +70,7 @@ public class SignUp {
         HospitalManagementSystem mainMenuObj = new HospitalManagementSystem();
         mainMenuObj.mainMenu();    
     }
-    boolean checkConstraints(String fName,String lName, String dob, String username, String password, String confirmPassword){
+    boolean checkConstraints(String fName,String lName,String email, String username, String password, String confirmPassword, String phno, String dob, String gender){
         boolean isValid = true;
         
         //Check Fname
@@ -80,26 +87,46 @@ public class SignUp {
             isValid = false;
             return isValid;
         }
-        if(!(dob != null && validateJavaDate(dob))){
-            msg = "\n\n" +ANSI_RED+" Invalid Date of Birth...! Birth date should be in formate: DD-MM-YYYY"+ ANSI_RESET;
+        //Check Lname
+        
+        if(!(email != null && !email.trim().equals("") && email.matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+(?:\\\\.[a-zA-Z0-9_!#$%&’*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\\\.[a-zA-Z0-9-]+)*$"))){
+            msg = "\n\n "+ANSI_RED+"Invalid Last Name...! Last Name can only contain alphabets. (Not even space) \n\n" + ANSI_RESET;
             System.out.println(msg);
             isValid = false;
             return isValid;
         }
         if(!(username != null && !username.trim().equals("") && username.matches("[a-zA-Z0-9]*"))){
-            msg = "\n\n" +ANSI_RED+" Invalid Username...! Username can only contain alphnumeric characters"+ ANSI_RESET;
+            msg = "\n\n" +ANSI_RED+"Invalid Username...! Username can only contain alphnumeric characters"+ ANSI_RESET;
             System.out.println(msg);
             isValid = false;
             return isValid;
         }
         if(!(password != null && !password.trim().equals("") && password.length() >= 8)){
-            msg = "\n\n" +ANSI_RED+" Invalid Password...! Password should be atleast 8 charater long"+ ANSI_RESET;
+            msg = "\n\n" +ANSI_RED+"Invalid Password...! Password should be atleast 8 charater long"+ ANSI_RESET;
             System.out.println(msg);
             isValid = false;
             return isValid;
         }
         if(!(password.equals(confirmPassword) )){
-            msg = "\n\n" +ANSI_RED+" Confirm password did not match...!"+ ANSI_RESET;
+            msg = "\n\n" +ANSI_RED+"Confirm password did not match...!"+ ANSI_RESET;
+            System.out.println(msg);
+            isValid = false;
+            return isValid;
+        }
+        if(!(phno != null && !phno.trim().equals("") && phno.matches("[0-9]*") && phno.length() == 10)){
+            msg = "\n\n "+ANSI_RED+"Invalid Phone Number...! \n\n" + ANSI_RESET;
+            System.out.println(msg);
+            isValid = false;
+            return isValid;
+        }
+        if(!(dob != null && validateJavaDate(dob))){
+            msg = "\n\n" +ANSI_RED+"Invalid Date of Birth...! Birth date should be in formate: DD-MM-YYYY"+ ANSI_RESET;
+            System.out.println(msg);
+            isValid = false;
+            return isValid;
+        }
+        if(!(gender.equals("M") || gender.equals("F") || gender.equals("O"))){
+            msg = "\n\n" +ANSI_RED+"Invalid Gender...! Gender should be M/F/O"+ ANSI_RESET;
             System.out.println(msg);
             isValid = false;
             return isValid;
