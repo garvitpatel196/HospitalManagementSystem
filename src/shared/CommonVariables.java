@@ -13,7 +13,7 @@ public class CommonVariables {
       public static String secretKey = "SecretGroup123";
       public static String salt = "DontShare";
        public static String instanceName = "PBKDF2WithHmacSHA256";
-      
+      public static String directoryPath = "E://Term1_textbooks//Java/";
        
        
 }

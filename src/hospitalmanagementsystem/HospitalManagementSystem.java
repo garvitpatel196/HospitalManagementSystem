@@ -6,6 +6,7 @@
 package hospitalmanagementsystem;
 
 import java.util.Scanner;
+import shared.WriteToExcel;
 
 /**
  *
@@ -52,6 +53,14 @@ public class HospitalManagementSystem {
                 case 0:
                     System.exit(0);
                     break;
+                case 3:
+                WriteToExcel writeMethod = new WriteToExcel();
+                try{
+                    String[] labels = {"fname","lname","email","pwd","DOB","gender","phoneNo"};
+                writeMethod.writeData("output.xls",labels);
+                }catch(Exception e){
+                    System.out.println(e);
+                }
                 default:
                     System.out.println("Please enter valid input \n \n");
                     break;
@@ -82,6 +91,7 @@ public class HospitalManagementSystem {
                 ReceptionistLogin receptionistObj = new ReceptionistLogin();
                 System.out.println("Welcome to receptionist dashboard \n \n");
                 break;
+            
         }
     }
 }
