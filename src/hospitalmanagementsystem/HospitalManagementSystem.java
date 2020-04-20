@@ -57,7 +57,8 @@ public class HospitalManagementSystem {
                 WriteToExcel writeMethod = new WriteToExcel();
                 try{
                     String[] labels = {"fname","lname","email","pwd","DOB","gender","phoneNo"};
-                writeMethod.writeData("output.xls",labels);
+                    String[] data = {"Pal","kotvir","pallavi@gmail.com","Asdf@123","14-081995","Female","9916067559"};
+                    writeMethod.writeData("output.xls",labels,data);
                 }catch(Exception e){
                     System.out.println(e);
                 }
