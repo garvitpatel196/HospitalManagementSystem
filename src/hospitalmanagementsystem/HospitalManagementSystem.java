@@ -21,7 +21,7 @@ public class HospitalManagementSystem {
         hs.mainMenu();
     }
 
-    void mainMenu() {
+    void mainMenu(){
         Scanner option = new Scanner(System.in);
 
         boolean flag = true;
@@ -33,7 +33,8 @@ public class HospitalManagementSystem {
             System.out.print("Please select any option from above list:");
             switch (option.nextInt()) {
                 case 1:
-                    signUpMenu();
+                    SignUp signupObj = new SignUp();
+                    signupObj.signUpMenu();
                     break;
                 case 2:
                     loginMenu();
@@ -55,98 +56,21 @@ public class HospitalManagementSystem {
         String username = loginOption.nextLine();
         System.out.print("Please Enter your Password: ");
         String password = loginOption.nextLine();
-
+        
         String userType = "doctor";
         switch (userType) {
             case "doctor":
-                docterDashboard(username);
+                DoctorLogin doctorObj = new DoctorLogin();
+                doctorObj.docterDashboard(username);
                 break;
             case "patient":
+                PatientLogin patientObj = new PatientLogin();
                 System.out.println("Welcome to patient's dashboard \n \n");
                 break;
             case "receptionist":
+                ReceptionistLogin receptionistObj = new ReceptionistLogin();
                 System.out.println("Welcome to receptionist dashboard \n \n");
                 break;
         }
-    }
-
-    void signUpMenu() {
-        System.out.println("Welcome to Sign Up Menu\n \n");
-    }
-
-    void docterDashboard(String username) {
-        System.out.println("\n\nWelcome " + username + " to the doctor's dashboard \n \n");
-        boolean flag = true;
-        while (flag) {
-            System.out.println("1. Enter data for Current Patient's Appointment");
-            System.out.println("2. Get Information of Next Patient");
-            System.out.println("3. Check history of Current Patient");
-            System.out.println("0. Logout");
-            System.out.print("Please select any option from above list:");
-            Scanner dockDashboardOptions = new Scanner(System.in);
-            switch (dockDashboardOptions.nextInt()) {
-                case 1:
-                    dockDashboardOptions.nextLine();
-                    setDataCurrPatient(username);
-                    break;
-                case 2:
-                    getDataNextPatient();
-                    break;
-                case 3:
-                    getHistoryCurrPatient();
-                    break;
-                case 0:
-                    flag = false;
-                    break;
-                default:
-                    System.out.println("Please select valid option.");
-                    break;
-            }
-        }
-    }
-
-    void setDataCurrPatient(String username) {
-        Scanner currPatientDataInput = new Scanner(System.in);
-        boolean flag = true;
-        while (flag) {
-            System.out.println("Enter Data for Patient " + username);
-            System.out.print("Enter Blood Sugar: " + currPatientDataInput.nextLine());
-            System.out.print("Heart Beats: " + currPatientDataInput.nextLine());
-            System.out.print("Enter Weight: " + currPatientDataInput.nextLine());
-            System.out.print("Symptoms: " + currPatientDataInput.nextLine());
-            System.out.print("Prescription: " + currPatientDataInput.nextLine());
-            System.out.println("\n\n1. Save");
-            System.out.println("2. Renter data");
-            System.out.println("0. Go back to main menu without saving");
-            System.out.println("Please select any one option from above list: ");
-            switch (currPatientDataInput.nextInt()) {
-                case 1:
-                    currPatientDataInput.nextLine();
-                    System.out.println("Data is saved.");
-                    flag = false;
-                    break;
-                case 2:
-                    break;
-                case 0:
-                    flag = false;
-                    break;
-                default:
-                    System.out.println("Please enter valid option.");
-                    break;
-            }
-            currPatientDataInput.nextLine();
-        }
-    }
-
-    void getDataNextPatient() {
-        System.out.println("Next Patient Data:");
-        System.out.println("Name: Garvit Patel");
-        System.out.println("Age: 23");
-        System.out.println("Phone Number: 4372497878");
-        System.out.println("\n\n");
-    }
-
-    void getHistoryCurrPatient() {
-
     }
 }
