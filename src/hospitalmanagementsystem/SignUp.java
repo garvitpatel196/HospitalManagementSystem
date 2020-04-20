@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import shared.EncryptionDecryptionAES;
 
 /**
  *
@@ -22,6 +23,8 @@ public class SignUp {
         System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"Welcome to Sign Up Menu\n \n"+ANSI_RESET);
         Scanner signUpOption = new Scanner(System.in);
         boolean signUpLoop = true;
+        EncryptionDecryptionAES crypto = new EncryptionDecryptionAES();
+        
         while(signUpLoop){
             System.out.print("Please Enter your First Name: ");
             String fName = signUpOption.nextLine();
@@ -33,8 +36,11 @@ public class SignUp {
             String username = signUpOption.nextLine();
             System.out.print("Please Enter your Password: ");
             String password = signUpOption.nextLine();  
+            password = crypto.encrypt(password);
+            System.out.println(password);
             System.out.print("Please Confirm your Password: ");
             String confirmPassword = signUpOption.nextLine();
+            confirmPassword = crypto.encrypt(confirmPassword);
 
             if(checkConstraints(fName, lName, dob, username, password, confirmPassword)){
                 msg=ANSI_GREEN+"Suucessfully Signed Up.!"+ANSI_RESET;
@@ -61,8 +67,7 @@ public class SignUp {
             }
         }
         HospitalManagementSystem mainMenuObj = new HospitalManagementSystem();
-        mainMenuObj.mainMenu();
-//        
+        mainMenuObj.mainMenu();    
     }
     boolean checkConstraints(String fName,String lName, String dob, String username, String password, String confirmPassword){
         boolean isValid = true;
@@ -105,9 +110,6 @@ public class SignUp {
             isValid = false;
             return isValid;
         }
-        //Check username
-        //Check password
-        //Check confirmPassword
         return isValid;
     }
     

@@ -5,6 +5,8 @@
  */
 package hospitalmanagementsystem;
 
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
 import java.util.Scanner;
 import shared.WriteToExcel;
 
@@ -48,7 +50,8 @@ public class HospitalManagementSystem {
                     signupObj.signUpMenu();
                     break;
                 case 2:
-                    loginMenu();
+                    LoginMenu menu = new LoginMenu();
+                    menu.loginMenu();
                     break;
                 case 0:
                     System.exit(0);
@@ -68,7 +71,10 @@ public class HospitalManagementSystem {
             }
         }
     }
+}
 
+class LoginMenu{
+    String userType;
     void loginMenu() {
         Scanner loginOption = new Scanner(System.in);
         System.out.println("\n\n==========================================================================");
@@ -78,21 +84,45 @@ public class HospitalManagementSystem {
         System.out.print("Please Enter your Password: ");
         String password = loginOption.nextLine();
         
-        String userType = "doctor";
-        switch (userType) {
-            case "doctor":
-                DoctorLogin doctorObj = new DoctorLogin();
-                doctorObj.docterDashboard(username);
-                break;
-            case "patient":
-                PatientLogin patientObj = new PatientLogin();
-                System.out.println("Welcome to patient's dashboard \n \n");
-                break;
-            case "receptionist":
-                ReceptionistLogin receptionistObj = new ReceptionistLogin();
-                System.out.println("Welcome to receptionist dashboard \n \n");
-                break;
-            
+//<<<<<<< HEAD
+//        String userType = "doctor";
+//        switch (userType) {
+//            case "doctor":
+//                DoctorLogin doctorObj = new DoctorLogin();
+//                doctorObj.docterDashboard(username);
+//                break;
+//            case "patient":
+//                PatientLogin patientObj = new PatientLogin();
+//                System.out.println("Welcome to patient's dashboard \n \n");
+//                break;
+//            case "receptionist":
+//                ReceptionistLogin receptionistObj = new ReceptionistLogin();
+//                System.out.println("Welcome to receptionist dashboard \n \n");
+//                break;
+//            
+//=======
+        if(isValidLoginCredentials(username,password)){
+            System.out.println("Login Successfull");
+                switch (userType) {
+                case "doctor":
+                    DoctorLogin doctorObj = new DoctorLogin();
+                    doctorObj.docterDashboard(username);
+                    break;
+                case "patient":
+                    PatientLogin patientObj = new PatientLogin();
+                    System.out.println("Welcome to patient's dashboard \n \n");
+                    break;
+                case "receptionist":
+                    ReceptionistLogin receptionistObj = new ReceptionistLogin();
+                    System.out.println("Welcome to receptionist dashboard \n \n");
+                    break;
+            }
+            System.out.println("Redirecting to your Dashboard");
+//>>>>>>> 731f1ce658dc20ce7436a6e70cb61d5eadf787fe
         }
+    }
+    boolean isValidLoginCredentials(String username, String password){
+        //pallavi fetch data from excel and validate credentials.
+        return false;
     }
 }

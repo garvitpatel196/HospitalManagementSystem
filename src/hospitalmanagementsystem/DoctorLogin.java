@@ -5,6 +5,8 @@
  */
 package hospitalmanagementsystem;
 
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
 import java.util.Scanner;
 
 /**
@@ -13,7 +15,7 @@ import java.util.Scanner;
  */
 public class DoctorLogin {
     void docterDashboard(String username) {
-        System.out.println("\n\nWelcome " + username + " to the doctor's dashboard \n \n");
+        System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"\n\nWelcome " + username + " to the doctor's dashboard \n \n"+ANSI_RESET);
         boolean flag = true;
         while (flag) {
             System.out.println("1. Enter data for Current Patient's Appointment");
@@ -83,6 +85,6 @@ public class DoctorLogin {
     }
 
     void getHistoryCurrPatient() {
-
+        System.out.println("Current Patient's History Tab");
     }
 }
