@@ -61,8 +61,7 @@ public class SignUp {
             }
         }
         HospitalManagementSystem mainMenuObj = new HospitalManagementSystem();
-        mainMenuObj.mainMenu();
-//        
+        mainMenuObj.mainMenu();     
     }
     boolean checkConstraints(String fName,String lName, String dob, String username, String password, String confirmPassword){
         boolean isValid = true;
