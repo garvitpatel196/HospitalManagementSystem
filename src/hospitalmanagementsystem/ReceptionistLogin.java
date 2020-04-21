@@ -51,37 +51,29 @@ public class ReceptionistLogin {
         Scanner slotOption = new Scanner(System.in);
         System.out.print("Enter Patient username: ");
         String patientUsername = slotOption.nextLine();
-        
-        if (isValidUser(patientUsername)){
-            System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
-            ArrayList<String> availableSlots;
-            Appointment appointment = new Appointment();
-            availableSlots = appointment.fetchAvailableSlot();
-            for (int i = 0; i < availableSlots.size(); i++) {
-                System.out.println((i + 1) + ". " + availableSlots.get(i));
-            }
-            System.out.print("Please enter option: ");
-            int timeId = slotOption.nextInt();
-            appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
+        System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
+        ArrayList<String> availableSlots;
+        Appointment appointment = new Appointment();
+        availableSlots = appointment.fetchAvailableSlot();
+        for (int i = 0; i < availableSlots.size(); i++) {
+            System.out.println((i + 1) + ". " + availableSlots.get(i));
         }
-        else{
-            System.out.println("\n\n" +ANSI_RED+"Invalid Username...!"+ANSI_RESET);
-        }
+        System.out.print("Please enter option: ");
+        int timeId = slotOption.nextInt();
+        appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
     }
-    boolean isValidUser(String username){
-        //pallavi check username if it is a valid username or not
-        boolean valid=true;
-        return valid;
-    }
-    ArrayList<String> getAllAppointments() {
+    void getAllAppointments() {
         //pallavi fetch appointment of data from excel file
         //required fields Fname, Lname, Gender, phno, time 
-        ArrayList<String> appointmentTime = new ArrayList<>();
-        appointmentTime.add("09:00 AM to 10:00 AM");
-        appointmentTime.add("10:00 AM to 11:00 AM");
-        appointmentTime.add("11:00 AM to 12:00 PM");
-        
-        return appointmentTime;
+        ArrayList<String> appointmentDetails = new ArrayList<>();
+        appointmentDetails.add("garvitpatel1 |"+" Garvit Patel 1 |"+" 09:00 AM to 10:00 AM");
+        appointmentDetails.add("garvitpatel2 |"+" Garvit Patel 2 |"+" 10:00 AM to 11:00 AM");
+        appointmentDetails.add("garvitpatel3 |"+" Garvit Patel 3 |"+" 11:00 AM to 12:00 PM");
+        appointmentDetails.add("garvitpatel4 |"+" Garvit Patel 4 |"+" 01:00 PM to 02:00 PM");
+        for(String details: appointmentDetails){
+            System.out.println(details);
+        }
+
     }
     void printInvoice(String patientUsername){
         Scanner invoiceScanner = new Scanner(System.in);
