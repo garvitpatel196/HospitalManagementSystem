@@ -27,7 +27,7 @@ public class ReceptionistLogin {
         boolean flag = true;
         Appointment appointment = new Appointment();
         while (flag) {
-            String patientUsername = appointment.getCurrentPatient();
+//            String patientUsername = appointment.getCurrentPatient();
             System.out.println("1. List all the upcoming appointments");
             System.out.println("2. Book New Appointment");
             System.out.println("3. Print the invoice of current Patient");
@@ -42,7 +42,7 @@ public class ReceptionistLogin {
                     scheduleNewAppointment();
                     break;
                 case 3:
-                    printInvoice(patientUsername);
+//                    printInvoice(patientUsername);
                     break;
                 case 0:
                     flag = false;
@@ -66,7 +66,10 @@ public class ReceptionistLogin {
         }
         System.out.print("Please enter option: ");
         int timeId = slotOption.nextInt();
-        appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
+        if(timeId>1 && timeId <=  availableSlots.size())
+            appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
+        else
+            System.out.println("\n\n"+ANSI_RED+"Invalid option entered"+ANSI_RESET+"\n\n");
     }
     void listAllAppointments() {
         //pallavi fetch appointment of data from excel file
@@ -74,8 +77,17 @@ public class ReceptionistLogin {
         Appointment app= new Appointment();
         ArrayList<ScheduleModel> allAppointments= app.getAllAppointments();
 //        ArrayList<String> appointmentDetails = new ArrayList<>();
+        System.out.println("\n"+ANSI_CYAN_BACKGROUND +"Upcoming appointments"+ ANSI_RESET+"\n");
         for(int row=0; row<allAppointments.size();row++){
-            System.out.println(ANSI_CYAN_BACKGROUND +"Patient Name:"+allAppointments.get(row).getUsername()+"--->"+"Timing:"+allAppointments.get(row).getTiming()+ ANSI_RESET);
+            Date date = new Date();
+            String timing = allAppointments.get(row).getTiming();
+            String[] scheduleHour = timing.split(":");
+            if(date.getHours() <= Integer.parseInt(scheduleHour[0]))
+                System.out.println(ANSI_GREEN +"Patient Name:"+allAppointments.get(row).getUsername()+"--->"+"Timing:"+allAppointments.get(row).getTiming()+ ANSI_RESET+"\n");
+            else{
+            if(row == allAppointments.size()-1)
+                System.out.println(ANSI_RED+"No upcoming appointments"+ANSI_RESET+"\n");
+            }
         }
     }
     void printInvoice(String patientUsername){

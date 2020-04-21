@@ -38,9 +38,9 @@ public class Appointment {
    public void setAppointment(String appointment,String username,int timeId ) {
         //pallavi store data in excel file
         String[] data = new String[3];
-        data[1]=Integer.toString(timeId);
-        data[2]=username;
-        data[0]=appointment;
+        data[0]=Integer.toString(timeId);
+        data[1]=username;
+        data[2]=appointment;
         WriteToExcel writetoExcel =  new WriteToExcel();
         try{
             writetoExcel.writeData(CommonVariables.appointmentLabelsFileName,CommonVariables.appointmentLabels , data);
@@ -80,9 +80,11 @@ public class Appointment {
 //        ArrayList<String> appointmentTime = new  ArrayList<String>();
 //        ReadFromExcel readClass = new ReadFromExcel();
 //        scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
+        System.out.println(scheduleRecords.size());
         for (ScheduleModel scheduleRecord : scheduleRecords) {
             String timing = scheduleRecord.getTiming();
             String[] scheduleHour = timing.split(":");
+            System.out.println("----->"+scheduleHour[0]+"--->"+timing);
             if (Integer.parseInt(scheduleHour[0]) == hours) {
                 username = scheduleRecord.getUsername();
             }
