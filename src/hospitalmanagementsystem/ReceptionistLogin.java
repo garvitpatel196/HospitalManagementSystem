@@ -73,7 +73,6 @@ public class ReceptionistLogin {
         for(String details: appointmentDetails){
             System.out.println(details);
         }
-
     }
     void printInvoice(String patientUsername){
         Scanner invoiceScanner = new Scanner(System.in);
