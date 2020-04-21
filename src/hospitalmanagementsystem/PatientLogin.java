@@ -6,9 +6,12 @@
 package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
+import hospitalmanagementsystem.models.ScheduleModel;
 import java.util.ArrayList;
 import java.util.Scanner;
 import shared.Appointment;
+import shared.CommonVariables;
+import shared.ReadFromExcel;
 
 /**
  *
@@ -32,7 +35,15 @@ public class PatientLogin {
                     scheduleNewAppointment(username);
                     break;
                 case 2:
-                    System.out.println("\n"+ANSI_GREEN+"You have an appointment with doctor at "+getMyAppointment()+ANSI_RESET+"\n");
+                    ArrayList<String> appointments=getMyAppointment(username);
+                    if(appointments.size()==0){
+                    System.out.println("\n"+ANSI_GREEN+"You have no upcoming appointments "+ANSI_RESET);
+                    }else{
+                    System.out.println("\n"+ANSI_GREEN+"You have an appointment/s with doctor at "+ANSI_RESET);                   
+                    for(int i=0;i<appointments.size();i++){
+                        System.out.println(ANSI_GREEN+appointments.get(i)+ANSI_RESET+"\n");                    
+                    }
+                    }
                     break;
                 case 3:
                     
@@ -51,18 +62,27 @@ public class PatientLogin {
         ArrayList<String> availableSlots;
         Appointment appointment = new Appointment();
         availableSlots = appointment.fetchAvailableSlot();
-        for(int i=0; i < availableSlots.size(); i++){
-            System.out.println((i+1)+". "+availableSlots.get(i));
-        }
+//        for(int i=0; i < availableSlots.size(); i++){
+//            System.out.println((i+1)+". "+availableSlots.get(i));
+//        }
         Scanner slotOption = new Scanner(System.in);
         System.out.print("Please enter option: ");
        int timeId = slotOption.nextInt();
         appointment.setAppointment(availableSlots.get(timeId - 1),username,timeId);
     }
     
-    String getMyAppointment(){
+     ArrayList<String> getMyAppointment(String patientName){
         //pallavi fetch appointment of data from excel file
-        String appointmentTime = "11:00 AM to 12:00 PM";
+        ArrayList<ScheduleModel> scheduleRecords = new ArrayList<ScheduleModel>();
+        ArrayList<String> appointmentTime = new  ArrayList<String>();
+        ReadFromExcel readClass = new ReadFromExcel();
+        scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
+        for(int row =0 ; row<scheduleRecords.size();row++){
+            if(scheduleRecords.get(row).getUsername().equals(patientName)){
+            appointmentTime.add(scheduleRecords.get(row).getTiming());
+            }
+//        System.out.println(scheduleRecords.get(row).getTiming());
+        }
         return appointmentTime;
     }
     

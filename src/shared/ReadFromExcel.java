@@ -5,7 +5,7 @@
  */
 package shared;
 
-import hospitalmanagementsystem.models.UserRecordModel;
+import hospitalmanagementsystem.models.*;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -21,17 +21,18 @@ import java.util.ArrayList;
 public class ReadFromExcel {
     Workbook workbook = null;
     ArrayList<String> dataObj = new ArrayList<String>();
-    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();;
+    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();
+    ArrayList<ScheduleModel> ScheduleList = new ArrayList<ScheduleModel>();
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;
     try {
 
             workbook = Workbook.getWorkbook(new File(path));
             Sheet sheet = workbook.getSheet(0);
-            System.out.println(sheet.getRows()+"---------------123232-----------");
+//            System.out.println(sheet.getRows()+"---------------123232-----------");
             for (int rowCount=1 ; rowCount < sheet.getRows() ; rowCount++){
                 for(int col = 0; col < sheet.getColumns(); col++){
-                    System.out.println(rowCount);
+//                    System.out.println(rowCount);
                     dataObj.add(sheet.getCell(col,rowCount).getContents());
                 }
                 switch(fromClass){
@@ -39,6 +40,12 @@ public class ReadFromExcel {
                         UserRecordModel usermodel = new UserRecordModel(dataObj);
                         userRecorddataList.add(usermodel);
                         dataObj.clear();
+                        break;
+                    case "schedule":
+                        ScheduleModel scheduleModel = new ScheduleModel(dataObj);
+                        ScheduleList.add(scheduleModel);
+                        dataObj.clear();
+                        break;
                         
                 }
 //                System.out.println(dataObj.get(0));
@@ -55,6 +62,10 @@ public class ReadFromExcel {
     public ArrayList<UserRecordModel> readUserRecord(String fromClass, String fileName){
         readData(fromClass,fileName);
         return userRecorddataList;
+    }
+    public ArrayList<ScheduleModel> readScheduleRecords(String fromClass, String fileName){
+        readData(fromClass,fileName);
+        return ScheduleList;
     }
     
     

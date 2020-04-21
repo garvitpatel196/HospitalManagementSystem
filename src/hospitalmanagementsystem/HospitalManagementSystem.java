@@ -91,23 +91,7 @@ class LoginMenu{
         System.out.print("Please Enter your Password: ");
         String password = loginOption.nextLine();
         password = crypto.encrypt(password);
-//<<<<<<< HEAD
-//        String userType = "doctor";
-//        switch (userType) {
-//            case "doctor":
-//                DoctorLogin doctorObj = new DoctorLogin();
-//                doctorObj.docterDashboard(username);
-//                break;
-//            case "patient":
-//                PatientLogin patientObj = new PatientLogin();
-//                System.out.println("Welcome to patient's dashboard \n \n");
-//                break;
-//            case "receptionist":
-//                ReceptionistLogin receptionistObj = new ReceptionistLogin();
-//                System.out.println("Welcome to receptionist dashboard \n \n");
-//                break;
-//            
-//=======
+
         if(isValidLoginCredentials(username,password)){
             System.out.println("Login Successfull");
             System.out.println("Redirecting to your Dashboard"+userType);
@@ -131,13 +115,13 @@ class LoginMenu{
         }else{            
             System.out.println("\n"+ANSI_RED+"Invalid credetials"+ANSI_RESET);
             System.out.println(ANSI_RED+"Redirecting back to login menu. Retry entering username and password"+ANSI_RESET);
-//            while(CounterLoginAttempt<=2){
-//                CounterLoginAttempt++;
+            while(CounterLoginAttempt<=2){
+                CounterLoginAttempt++;
 //                System.out.println(CounterLoginAttempt+"fbcbnbncnfddfnn");
-//                loginMenu();                
-//            }
-//            HospitalManagementSystem menu = new HospitalManagementSystem();
-//            menu.mainMenu();
+                loginMenu();                
+            }
+            HospitalManagementSystem menu = new HospitalManagementSystem();
+            menu.mainMenu();
         }
     }
     boolean isValidLoginCredentials(String username, String password){
@@ -151,13 +135,13 @@ class LoginMenu{
             validateUserFlag = true;
 //            System.out.println(userRecords.get(row).getUserType()+"-----ffgffgg------------");
              userType = userRecords.get(row).getUserType();
-             System.out.println(">>>>>>>>>>>>>>"+userRecords.get(row).getEmail());
+//             System.out.println(">>>>>>>>>>>>>>"+userRecords.get(row).getEmail());
              break;
             }else{
 //                System.out.println(userRecords.get(row).getEmail()+"-----ffgffgg------------"+userRecords.size());
             validateUserFlag = false;
             }
-            System.out.println("======================"+userRecords.get(row).getEmail()+"---"+row+"---"+userRecords.size());
+            System.out.println("\n==========================================================================");
         }
        
         return validateUserFlag;
