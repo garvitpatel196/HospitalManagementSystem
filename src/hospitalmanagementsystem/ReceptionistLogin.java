@@ -25,16 +25,16 @@ public class ReceptionistLogin {
             System.out.println("3. Check History");
             System.out.println("0. Logout");
             System.out.print("Please select any option from above list:");
-            Scanner patientDashboardOptions = new Scanner(System.in);
-            switch (patientDashboardOptions.nextInt()) {
+            Scanner receptionistDashboardOptions = new Scanner(System.in);
+            switch (receptionistDashboardOptions.nextInt()) {
                 case 1:
+                    getAllAppointments();
                     break;
                 case 2:
-                    patientDashboardOptions.nextLine();
                     scheduleNewAppointment();
                     break;
                 case 3:
-
+                    
                     break;
                 case 0:
                     flag = false;
@@ -47,17 +47,29 @@ public class ReceptionistLogin {
     }
 
     void scheduleNewAppointment() {
-        System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
-        ArrayList<String> availableSlots;
-        availableSlots = fetchAvailableSlot();
-        for (int i = 0; i < availableSlots.size(); i++) {
-            System.out.println((i + 1) + ". " + availableSlots.get(i));
+        System.out.println("Please enter the ussername of the Patient:");
+        Scanner userScan = new Scanner(System.in);
+        String username = userScan.nextLine();
+        if (isValidUser(username)){
+            System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
+            ArrayList<String> availableSlots;
+            availableSlots = fetchAvailableSlot();
+            for (int i = 0; i < availableSlots.size(); i++) {
+                System.out.println((i + 1) + ". " + availableSlots.get(i));
+            }
+            Scanner slotOption = new Scanner(System.in);
+            System.out.print("Please enter option: ");
+            setAppointment(availableSlots.get(slotOption.nextInt() - 1),username);
         }
-        Scanner slotOption = new Scanner(System.in);
-        System.out.print("Please enter option: ");
-        setAppointment(availableSlots.get(slotOption.nextInt() - 1));
+        else{
+            System.out.println("\n\n" +ANSI_RED+"Invalid Username...!"+ANSI_RESET);
+        }
     }
-
+    boolean isValidUser(String username){
+        //pallavi check username if it is a valid username or not
+        boolean valid=true;
+        return valid;
+    }
     ArrayList<String> fetchAvailableSlot() {
         ArrayList<String> slots = new ArrayList<>();
         //pallavi fetch data from excel and add in slots
@@ -68,14 +80,19 @@ public class ReceptionistLogin {
         return slots;
     }
 
-    void setAppointment(String appointment) {
-        System.out.println("\n" + ANSI_GREEN + "Your Appoint has been booked for " + appointment + ANSI_RESET + "\n\n");
+    void setAppointment(String appointment, String username) {
+        System.out.println("\n" + ANSI_GREEN + "Your Appointment has been booked for " + appointment + ANSI_RESET + "\n\n");
         //pallavi store data in excel file
     }
 
-    String getMyAppointment() {
+    ArrayList<String> getAllAppointments() {
         //pallavi fetch appointment of data from excel file
-        String appointmentTime = "11:00 AM to 12:00 PM";
+        //required fields Fname, Lname, Gender, phno, time 
+        ArrayList<String> appointmentTime = new ArrayList<>();
+        appointmentTime.add("09:00 AM to 10:00 AM");
+        appointmentTime.add("10:00 AM to 11:00 AM");
+        appointmentTime.add("11:00 AM to 12:00 PM");
+        
         return appointmentTime;
     }
 }

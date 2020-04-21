@@ -88,6 +88,7 @@ class LoginMenu{
                     break;
                 case "receptionist":
                     ReceptionistLogin receptionistObj = new ReceptionistLogin();
+                    receptionistObj.Dashboard(username);
                     System.out.println("Welcome to receptionist dashboard \n \n");
                     break;
             }

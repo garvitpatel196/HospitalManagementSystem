@@ -27,7 +27,6 @@ public class PatientLogin {
             Scanner patientDashboardOptions = new Scanner(System.in);
             switch (patientDashboardOptions.nextInt()) {
                 case 1:
-                    patientDashboardOptions.nextLine();
                     scheduleNewAppointment();
                     break;
                 case 2:

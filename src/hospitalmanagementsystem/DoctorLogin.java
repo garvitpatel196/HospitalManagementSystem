@@ -5,8 +5,7 @@
  */
 package hospitalmanagementsystem;
 
-import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
-import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
+import static hospitalmanagementsystem.HospitalManagementSystem.*;
 import java.util.Scanner;
 
 /**
@@ -70,7 +69,7 @@ public class DoctorLogin {
                     flag = false;
                     break;
                 default:
-                    System.out.println("Please enter valid option.");
+                    System.out.println("\n\n" +ANSI_RED+"Please enter valid option.");
                     break;
             }
             currPatientDataInput.nextLine();
