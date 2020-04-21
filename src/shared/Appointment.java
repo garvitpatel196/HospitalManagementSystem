@@ -8,6 +8,7 @@ package shared;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_GREEN;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -52,5 +53,14 @@ public class Appointment {
         String patientDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
         System.out.println("Patient Details:\n"+patientDetails);
         return "username";
+    }
+    public HashMap<String, String> getUserDetails(String patientUsername){
+        // fetch all data and store in HashMap
+        HashMap<String, String> userDetails = new HashMap<>();
+        userDetails.put("username", "garvitpatel196");
+        userDetails.put("name","Garvit "+"Patel");
+        userDetails.put("phone","4372497878");
+        userDetails.put("gender","M");
+        return userDetails;
     }
 }
