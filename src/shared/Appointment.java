@@ -24,10 +24,14 @@ public class Appointment {
     public ArrayList<String> fetchAvailableSlot() {
         ArrayList<String> slots = new ArrayList<>();
         //pallavi fetch data from excel and add in slots
-        slots.add("09:00:00 AM to 10:00:00 AM");
-        slots.add("10:00:00 AM to 11:00:00 AM");
-        slots.add("11:00:00 AM to 12:00:00 PM");
-        slots.add("12:00:00 PM to 01:00:00 PM");
+        slots.add("09:00:00 to 10:00:00");
+        slots.add("10:00:00 to 11:00:00");
+        slots.add("11:00:00 to 12:00:00");
+        slots.add("12:00:00 to 13:00:00");
+        slots.add("14:00:00 to 15:00:00");
+        slots.add("15:00:00 to 16:00:00");
+        slots.add("16:00:00 to 17:00:00");
+        slots.add("17:00:00 to 18:00:00");
         return slots;
     }
 

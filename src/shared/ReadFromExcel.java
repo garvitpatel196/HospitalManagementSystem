@@ -15,6 +15,10 @@ import jxl.Workbook;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RED;
 /**
  *
  * @author NIAR Tech
@@ -62,7 +66,7 @@ public class ReadFromExcel {
            
 
         } catch (Exception e) {
-           System.out.println("NO users in the record.");
+           System.out.println(ANSI_RED+"No record found."+ANSI_RESET+"\n");
         } 
     }
     

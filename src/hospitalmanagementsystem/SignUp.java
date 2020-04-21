@@ -26,9 +26,10 @@ public class SignUp {
         Scanner signUpOption = new Scanner(System.in);
         boolean signUpLoop = true;
         EncryptionDecryptionAES crypto = new EncryptionDecryptionAES();
-        int counter = 0;
+        
         while(signUpLoop){
-             System.out.print("Please Enter your First Name: ");
+            int counter = 0;
+            System.out.print("Please Enter your First Name: ");
             String fName = signUpOption.nextLine();
             data[counter++] = fName;
             System.out.print("Please Enter your Last Name: ");
@@ -78,6 +79,7 @@ public class SignUp {
                 System.out.print("Please select any option from above list:");
                 switch (option.nextInt()) {
                     case 1:
+//                        data=new String[9];
                         break;
                     case 2:
                         signUpLoop = false;
