@@ -39,7 +39,7 @@ public class HospitalManagementSystem {
         hs.mainMenu();
     }
 
-    void mainMenu(){
+    public void mainMenu(){
         Scanner option = new Scanner(System.in);
         boolean flag = true;
         while (flag) {
@@ -80,6 +80,7 @@ public class HospitalManagementSystem {
 
 class LoginMenu{
     String userType;
+    int CounterLoginAttempt = 0;
     void loginMenu() {
         EncryptionDecryptionAES crypto = new EncryptionDecryptionAES();
         Scanner loginOption = new Scanner(System.in);
@@ -109,7 +110,7 @@ class LoginMenu{
 //=======
         if(isValidLoginCredentials(username,password)){
             System.out.println("Login Successfull");
-            System.out.println("Redirecting to your Dashboard");
+            System.out.println("Redirecting to your Dashboard"+userType);
                 switch (userType) {
                 case "doctor":
                     DoctorLogin doctorObj = new DoctorLogin();
@@ -122,15 +123,21 @@ class LoginMenu{
                     break;
                 case "receptionist":
                     ReceptionistLogin receptionistObj = new ReceptionistLogin();
+                    receptionistObj.Dashboard(username);
                     System.out.println("Welcome to receptionist dashboard \n \n");
                     break;
             }
 
-        }else{
-         System.out.println("\n"+ANSI_RED+"Invalid credetials"+ANSI_RESET);
-         System.out.println(ANSI_RED+"Redirecting back to login menu. Retry entering username and password"+ANSI_RESET);
-         loginMenu();
-         
+        }else{            
+            System.out.println("\n"+ANSI_RED+"Invalid credetials"+ANSI_RESET);
+            System.out.println(ANSI_RED+"Redirecting back to login menu. Retry entering username and password"+ANSI_RESET);
+//            while(CounterLoginAttempt<=2){
+//                CounterLoginAttempt++;
+//                System.out.println(CounterLoginAttempt+"fbcbnbncnfddfnn");
+//                loginMenu();                
+//            }
+//            HospitalManagementSystem menu = new HospitalManagementSystem();
+//            menu.mainMenu();
         }
     }
     boolean isValidLoginCredentials(String username, String password){
@@ -142,12 +149,15 @@ class LoginMenu{
         for(int row = 0; row < userRecords.size(); row++){
             if(username.equals(userRecords.get(row).getEmail()) && password.equals(userRecords.get(row).getPwd())){
             validateUserFlag = true;
-            System.out.println(userRecords.get(row).getUserType());
+//            System.out.println(userRecords.get(row).getUserType()+"-----ffgffgg------------");
              userType = userRecords.get(row).getUserType();
+             System.out.println(">>>>>>>>>>>>>>"+userRecords.get(row).getEmail());
+             break;
             }else{
+//                System.out.println(userRecords.get(row).getEmail()+"-----ffgffgg------------"+userRecords.size());
             validateUserFlag = false;
             }
-            System.out.println("=============================================");
+            System.out.println("======================"+userRecords.get(row).getEmail()+"---"+row+"---"+userRecords.size());
         }
        
         return validateUserFlag;

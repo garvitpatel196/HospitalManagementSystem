@@ -8,7 +8,7 @@ package hospitalmanagementsystem;
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import shared.*;
 /**
  *
  * @author gpatel
@@ -46,31 +46,20 @@ public class ReceptionistLogin {
         }
     }
 
-    void scheduleNewAppointment() {
-        System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
+    void scheduleNewAppointment() {      
         ArrayList<String> availableSlots;
-        availableSlots = fetchAvailableSlot();
+        Appointment appointment = new Appointment();
+        availableSlots = appointment.fetchAvailableSlot();
+        Scanner slotOption = new Scanner(System.in);
+        System.out.print("Enter Patient username: ");
+        String patientUsername = slotOption.nextLine();
+        System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
         for (int i = 0; i < availableSlots.size(); i++) {
             System.out.println((i + 1) + ". " + availableSlots.get(i));
         }
-        Scanner slotOption = new Scanner(System.in);
         System.out.print("Please enter option: ");
-        setAppointment(availableSlots.get(slotOption.nextInt() - 1));
-    }
-
-    ArrayList<String> fetchAvailableSlot() {
-        ArrayList<String> slots = new ArrayList<>();
-        //pallavi fetch data from excel and add in slots
-        slots.add("09:00 AM to 10:00 AM");
-        slots.add("10:00 AM to 11:00 AM");
-        slots.add("11:00 AM to 12:00 PM");
-        slots.add("12:00 PM to 01:00 PM");
-        return slots;
-    }
-
-    void setAppointment(String appointment) {
-        System.out.println("\n" + ANSI_GREEN + "Your Appoint has been booked for " + appointment + ANSI_RESET + "\n\n");
-        //pallavi store data in excel file
+        int timeId = slotOption.nextInt();
+        appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
     }
 
     String getMyAppointment() {

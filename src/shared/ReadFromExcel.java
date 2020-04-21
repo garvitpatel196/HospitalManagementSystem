@@ -21,24 +21,27 @@ import java.util.ArrayList;
 public class ReadFromExcel {
     Workbook workbook = null;
     ArrayList<String> dataObj = new ArrayList<String>();
-    ArrayList<UserRecordModel> userRecorddataList;
+    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();;
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;
     try {
 
             workbook = Workbook.getWorkbook(new File(path));
             Sheet sheet = workbook.getSheet(0);
+            System.out.println(sheet.getRows()+"---------------123232-----------");
             for (int rowCount=1 ; rowCount < sheet.getRows() ; rowCount++){
                 for(int col = 0; col < sheet.getColumns(); col++){
+                    System.out.println(rowCount);
                     dataObj.add(sheet.getCell(col,rowCount).getContents());
                 }
                 switch(fromClass){
                     case "signup" :
-                        userRecorddataList = new ArrayList<UserRecordModel>();
                         UserRecordModel usermodel = new UserRecordModel(dataObj);
                         userRecorddataList.add(usermodel);
-                        break;
+                        dataObj.clear();
+                        
                 }
+//                System.out.println(dataObj.get(0));
             }
            
 

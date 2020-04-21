@@ -16,5 +16,7 @@ public class CommonVariables {
       public static String directoryPath = "E://Term1_textbooks//Java/";
       public static String[] userRecordLabels = {"fname","lname","email","pwd","DOB","phoneNo","gender","UserType"};
        public static String userRecordFileName = "user_record.xls";
+        public static String[] appointmentLabels = {"timeId","username","timing"};
+       public static String appointmentLabelsFileName = "appointment_schedule.xls";
        
 }

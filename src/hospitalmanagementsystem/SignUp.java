@@ -57,7 +57,7 @@ public class SignUp {
             System.out.print("Please Enter your Gender M/F/O: ");
             String gender = signUpOption.nextLine();
             data[counter++] = gender;
-            data[counter] = "paitent";
+            data[counter] = "patient";
             if(checkConstraints(fName, lName, email, password, confirmPassword,phno, dob, gender)){
                 msg=ANSI_GREEN+"Sucessfully Signed Up.!"+ANSI_RESET;
                 WriteToExcel newUserRecord = new WriteToExcel();
