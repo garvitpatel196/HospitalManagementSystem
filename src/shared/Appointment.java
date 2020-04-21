@@ -26,19 +26,31 @@ public class Appointment {
     }
 
    public void setAppointment(String appointment,String username,int timeId ) {
-        System.out.println("\n" + ANSI_GREEN + "Your Appoint has been booked for " + appointment + ANSI_RESET + "\n\n");
         //pallavi store data in excel file
         String[] data = new String[3];
-        int i =0 ;
-        data[i++]=Integer.toString(timeId);
-        data[i++]=username;
-        data[i]=appointment;
+        data[1]=Integer.toString(timeId);
+        data[2]=username;
+        data[0]=appointment;
         WriteToExcel writetoExcel =  new WriteToExcel();
         try{
             writetoExcel.writeData(CommonVariables.appointmentLabelsFileName,CommonVariables.appointmentLabels , data);
-            
+            System.out.println("\n" + ANSI_GREEN + "Your Appoint has been booked for " + appointment + ANSI_RESET + "\n\n");
         }catch(Exception e){
-        System.err.println(e);
+            System.err.println(e);
         }
+    }
+    public void getPatientHistory(String username){
+        System.out.println("History of patient...............");
+    }
+    public String getCurrentPatient(){
+        String patientDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
+        System.out.println("Patient Details:\n"+patientDetails);
+        return "username";
+    }
+    public String getNextPatient(){
+        //check according to appointment time and current time
+        String patientDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
+        System.out.println("Patient Details:\n"+patientDetails);
+        return "username";
     }
 }

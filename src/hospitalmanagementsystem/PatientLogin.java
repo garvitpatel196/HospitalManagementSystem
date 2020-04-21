@@ -46,7 +46,8 @@ public class PatientLogin {
                     }
                     break;
                 case 3:
-                    
+                    Appointment appointment = new Appointment();
+                    appointment.getPatientHistory(username);
                     break;
                 case 0:
                     flag = false;
@@ -67,7 +68,7 @@ public class PatientLogin {
 //        }
         Scanner slotOption = new Scanner(System.in);
         System.out.print("Please enter option: ");
-       int timeId = slotOption.nextInt();
+        int timeId = slotOption.nextInt();
         appointment.setAppointment(availableSlots.get(timeId - 1),username,timeId);
     }
     
@@ -85,6 +86,4 @@ public class PatientLogin {
         }
         return appointmentTime;
     }
-    
-    
 }
