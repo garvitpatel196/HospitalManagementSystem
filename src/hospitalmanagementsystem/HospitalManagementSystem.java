@@ -7,7 +7,12 @@ package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
+import hospitalmanagementsystem.models.UserRecordModel;
+import java.util.ArrayList;
 import java.util.Scanner;
+import shared.CommonVariables;
+import shared.EncryptionDecryptionAES;
+import shared.ReadFromExcel;
 import shared.WriteToExcel;
 
 /**
@@ -75,6 +80,7 @@ public class HospitalManagementSystem {
 class LoginMenu{
     String userType;
     void loginMenu() {
+        EncryptionDecryptionAES crypto = new EncryptionDecryptionAES();
         Scanner loginOption = new Scanner(System.in);
         System.out.println("\n==========================================================================");
         System.out.println("\n"+ANSI_CYAN_BACKGROUND+"Welcome to Login Menu"+ANSI_RESET);
@@ -82,7 +88,7 @@ class LoginMenu{
         String username = loginOption.nextLine();
         System.out.print("Please Enter your Password: ");
         String password = loginOption.nextLine();
-        
+        password = crypto.encrypt(password);
 //<<<<<<< HEAD
 //        String userType = "doctor";
 //        switch (userType) {
@@ -123,7 +129,20 @@ class LoginMenu{
     }
     boolean isValidLoginCredentials(String username, String password){
         //pallavi fetch data from excel and validate credentials.
+        boolean validateUserFlag = false;
+        ArrayList<UserRecordModel> userRecords = new ArrayList<UserRecordModel>();
+        ReadFromExcel readClass = new ReadFromExcel();
+        userRecords = readClass.readUserRecord("signup",CommonVariables.userRecordFileName);
+        for(int row = 0; row < userRecords.size(); row++){
+            if(username.equals(userRecords.get(row).getEmail()) && password.equals(userRecords.get(row).getPwd())){
+            validateUserFlag = true;
+            System.out.println(userRecords.get(row).getEmail());
+            }else{
+            validateUserFlag = false;
+            }
+            System.out.println("------------->>"+userRecords.get(row).getEmail());
+        }
         userType = "patient";
-        return true;
+        return validateUserFlag;
     }
 }
