@@ -6,16 +6,11 @@
 package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
-<<<<<<< HEAD
 import hospitalmanagementsystem.models.ScheduleModel;
-import java.util.ArrayList;
-import java.util.Date;
-=======
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
->>>>>>> 00fbd2771abe8231d059b1e53ac84a5566d24333
 import java.util.Scanner;
 import shared.*;
 /**
@@ -101,7 +96,7 @@ public class ReceptionistLogin {
         WriteObjectToFile(invoice);
     }
     void WriteObjectToFile(Object serObj) {
-        String filepath="./";
+        String filepath="./data/";
         try {
  
             FileOutputStream fileOut = new FileOutputStream(filepath);

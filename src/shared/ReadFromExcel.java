@@ -7,16 +7,13 @@ package shared;
 
 
 import hospitalmanagementsystem.models.*;
-import jxl.Cell;
 
 import hospitalmanagementsystem.models.UserRecordModel;
 
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 /**
  *
@@ -25,9 +22,9 @@ import java.util.ArrayList;
 public class ReadFromExcel {
     Workbook workbook = null;
 
-    ArrayList<String> dataObj = new ArrayList<String>();
-    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();
-    ArrayList<ScheduleModel> ScheduleList = new ArrayList<ScheduleModel>();
+    ArrayList<String> dataObj = new ArrayList<>();
+    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<>();
+    ArrayList<ScheduleModel> ScheduleList = new ArrayList<>();
 
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;

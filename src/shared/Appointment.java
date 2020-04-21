@@ -9,11 +9,8 @@ import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_GREEN;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
 import hospitalmanagementsystem.models.ScheduleModel;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Date;
-=======
 import java.util.HashMap;
->>>>>>> 00fbd2771abe8231d059b1e53ac84a5566d24333
 
 /**
  *
@@ -58,19 +55,18 @@ public class Appointment {
 //        ArrayList<String> appointmentTime = new  ArrayList<String>();
 //        ReadFromExcel readClass = new ReadFromExcel();
 //        scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
-        for(int row =0 ; row<scheduleRecords.size();row++){
-            String timing = scheduleRecords.get(row).getTiming();
-           String[] scheduleHour = timing.split(":");
-           if(Integer.parseInt(scheduleHour[0]) == hours){
-            username = scheduleRecords.get(row).getUsername();
-           }
-           
+        for (ScheduleModel scheduleRecord : scheduleRecords) {
+            String timing = scheduleRecord.getTiming();
+            String[] scheduleHour = timing.split(":");
+            if (Integer.parseInt(scheduleHour[0]) == hours) {
+                username = scheduleRecord.getUsername();
+            }
         }
         return username;
     }
     
     public  ArrayList<ScheduleModel> getAllAppointments(){
-        ArrayList<ScheduleModel> scheduleRecords = new ArrayList<ScheduleModel>();
+        ArrayList<ScheduleModel> scheduleRecords = new ArrayList<>();
 //        ArrayList<String> appointmentTime = new  ArrayList<String>();
         ReadFromExcel readClass = new ReadFromExcel();
         scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
