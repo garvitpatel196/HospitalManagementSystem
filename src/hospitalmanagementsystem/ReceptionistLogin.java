@@ -6,9 +6,16 @@
 package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
+<<<<<<< HEAD
 import hospitalmanagementsystem.models.ScheduleModel;
 import java.util.ArrayList;
 import java.util.Date;
+=======
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+>>>>>>> 00fbd2771abe8231d059b1e53ac84a5566d24333
 import java.util.Scanner;
 import shared.*;
 /**
@@ -80,8 +87,30 @@ public class ReceptionistLogin {
         float appointmentCharges = Float.parseFloat(invoiceScanner.nextLine());
         System.out.println("Please enter Medicine charge:");
         float medicineCharges = Float.parseFloat(invoiceScanner.nextLine());
+        invoiceScanner.nextLine();
+        System.out.println("Please enter Payment method (card/cash):");
+        String paymentMethod = invoiceScanner.nextLine();
+        
         float GST = (appointmentCharges*13)/100;
         float total = appointmentCharges + medicineCharges + GST;
-        System.out.println(total);
+        Appointment appointment = new Appointment();
+        HashMap<String, String> userDetails = appointment.getUserDetails(patientUsername);
+        
+        //Invoice invoice = new Invoice("John","Frost",22,"Med1",250,"Credit Card");
+        Invoice invoice = new Invoice(userDetails.get("name"),userDetails.get("phone"),userDetails.get("gender"),appointmentCharges,medicineCharges,GST,total,paymentMethod);
+        WriteObjectToFile(invoice);
+    }
+    void WriteObjectToFile(Object serObj) {
+        String filepath="./";
+        try {
+ 
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            try (ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+                objectOut.writeObject(serObj.toString());
+            }
+            System.out.println("The Object  was succesfully written to a file");
+ 
+        } catch (Exception ex) {
+        }
     }
 }
