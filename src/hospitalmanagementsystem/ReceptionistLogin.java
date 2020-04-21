@@ -8,8 +8,11 @@ package hospitalmanagementsystem;
 import hospitalmanagementsystem.models.Invoice;
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
 import hospitalmanagementsystem.models.ScheduleModel;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Date;
+=======
+>>>>>>> 13d031f5ef5facf900a8e20c40ccf2a00a4dd655
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -99,7 +102,7 @@ public class ReceptionistLogin {
         WriteObjectToFile(invoice);
     }
     void WriteObjectToFile(Object serObj) {
-        String filepath="./";
+        String filepath="./data/";
         try {
  
             FileOutputStream fileOut = new FileOutputStream(filepath);
