@@ -7,6 +7,7 @@ package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RED;
 import hospitalmanagementsystem.models.UserRecordModel;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -125,6 +126,11 @@ class LoginMenu{
                     break;
             }
 
+        }else{
+         System.out.println("\n"+ANSI_RED+"Invalid credetials"+ANSI_RESET);
+         System.out.println(ANSI_RED+"Redirecting back to login menu. Retry entering username and password"+ANSI_RESET);
+         loginMenu();
+         
         }
     }
     boolean isValidLoginCredentials(String username, String password){
@@ -136,13 +142,14 @@ class LoginMenu{
         for(int row = 0; row < userRecords.size(); row++){
             if(username.equals(userRecords.get(row).getEmail()) && password.equals(userRecords.get(row).getPwd())){
             validateUserFlag = true;
-            System.out.println(userRecords.get(row).getEmail());
+            System.out.println(userRecords.get(row).getUserType());
+             userType = userRecords.get(row).getUserType();
             }else{
             validateUserFlag = false;
             }
-            System.out.println("------------->>"+userRecords.get(row).getEmail());
+            System.out.println("=============================================");
         }
-        userType = "patient";
+       
         return validateUserFlag;
     }
 }

@@ -19,6 +19,7 @@ public class UserRecordModel {
     private String dob = "";
     private String phoneNo = "";
     private String gender = "";
+    private String userType = "";
     
     public UserRecordModel(ArrayList<String> dataObj){
         this.fname = dataObj.get(0);
@@ -28,6 +29,7 @@ public class UserRecordModel {
         this.dob = dataObj.get(4);
         this.phoneNo = dataObj.get(5);
         this.gender=dataObj.get(6);
+        this.userType = dataObj.get(7);
     }
 
     public String getFname() {
@@ -85,6 +87,14 @@ public class UserRecordModel {
     public void setGender(String gender) {
         this.gender = gender;
     } 
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
    
     
     
