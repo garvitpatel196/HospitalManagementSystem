@@ -15,7 +15,8 @@ import java.util.Scanner;
  */
 public class PatientLogin {
     void patientDashboard(String username) {
-        System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"\n\nWelcome " + username + " to the doctor's dashboard \n \n"+ANSI_RESET);
+        System.out.println("\n==========================================================================");
+        System.out.println("\n"+ANSI_CYAN_BACKGROUND+"Welcome " + username + " to the patient's dashboard"+ANSI_RESET);
         boolean flag = true;
         while (flag) {
             System.out.println("1. Schedule New Appointment");
@@ -30,7 +31,7 @@ public class PatientLogin {
                     scheduleNewAppointment();
                     break;
                 case 2:
-                    
+                    System.out.println("\n"+ANSI_GREEN+"You have an appointment with doctor at "+getMyAppointment()+ANSI_RESET+"\n");
                     break;
                 case 3:
                     
@@ -45,13 +46,14 @@ public class PatientLogin {
         }
     }
     void scheduleNewAppointment(){
-        System.out.println("Select the slot from below available time");
+        System.out.println("\n"+ANSI_YELLOW+"Select the slot from below available time"+ANSI_RESET);
         ArrayList<String> availableSlots;
         availableSlots = fetchAvailableSlot();
         for(int i=0; i < availableSlots.size(); i++){
             System.out.println((i+1)+". "+availableSlots.get(i));
         }
         Scanner slotOption = new Scanner(System.in);
+        System.out.print("Please enter option: ");
         setAppointment(availableSlots.get(slotOption.nextInt()-1));
     }
     ArrayList<String> fetchAvailableSlot(){
@@ -64,12 +66,14 @@ public class PatientLogin {
         return slots;
     }
     void setAppointment(String appointment){
-        System.out.println(ANSI_GREEN+"Your Appoint has been booked for "+appointment+ANSI_RESET);
+        System.out.println("\n"+ANSI_GREEN+"Your Appoint has been booked for "+appointment+ANSI_RESET+"\n\n");
         //pallavi store data in excel file
     }
-    String getAppointment(){
+    String getMyAppointment(){
         //pallavi fetch appointment of data from excel file
-        return "";
+        String appointmentTime = "11:00 AM to 12:00 PM";
+        return appointmentTime;
     }
+    
     
 }
