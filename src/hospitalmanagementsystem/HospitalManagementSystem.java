@@ -130,6 +130,7 @@ class LoginMenu{
         ArrayList<UserRecordModel> userRecords = new ArrayList<UserRecordModel>();
         ReadFromExcel readClass = new ReadFromExcel();
         userRecords = readClass.readUserRecord("signup",CommonVariables.userRecordFileName);
+        if(userRecords.size()!=0){
         for(int row = 0; row < userRecords.size(); row++){
             if(username.equals(userRecords.get(row).getEmail()) && password.equals(userRecords.get(row).getPwd())){
             validateUserFlag = true;
@@ -143,7 +144,7 @@ class LoginMenu{
             }
             System.out.println("\n==========================================================================");
         }
-       
+        }       
         return validateUserFlag;
     }
 }

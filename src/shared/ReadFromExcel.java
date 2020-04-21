@@ -5,12 +5,12 @@
  */
 package shared;
 
-<<<<<<< HEAD
+
 import hospitalmanagementsystem.models.*;
 import jxl.Cell;
-=======
+
 import hospitalmanagementsystem.models.UserRecordModel;
->>>>>>> e7a4282ae916d8d66c46a82ab9ebcc4d44d3ce6a
+
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -24,14 +24,11 @@ import java.util.ArrayList;
  */
 public class ReadFromExcel {
     Workbook workbook = null;
-<<<<<<< HEAD
+
     ArrayList<String> dataObj = new ArrayList<String>();
     ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();
     ArrayList<ScheduleModel> ScheduleList = new ArrayList<ScheduleModel>();
-=======
-    ArrayList<String> dataObj = new ArrayList<>();
-    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<>();;
->>>>>>> e7a4282ae916d8d66c46a82ab9ebcc4d44d3ce6a
+
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;
     try {
@@ -61,7 +58,7 @@ public class ReadFromExcel {
             }
            
 
-        } catch (IOException | BiffException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } 
     }

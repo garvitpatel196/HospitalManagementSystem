@@ -47,7 +47,7 @@ public class PatientLogin {
                     break;
                 case 3:
                     Appointment appointment = new Appointment();
-                    appointment.getPatientHistory(username);
+//                    appointment.getPatientHistory(username);
                     break;
                 case 0:
                     flag = false;

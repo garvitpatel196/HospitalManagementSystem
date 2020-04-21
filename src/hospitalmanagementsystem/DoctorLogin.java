@@ -6,8 +6,11 @@
 package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
+import java.util.Date;
 import java.util.Scanner;
 import shared.Appointment;
+import shared.CommonVariables;
+import shared.WriteToExcel;
 
 /**
  *
@@ -20,7 +23,12 @@ public class DoctorLogin {
         Appointment appointment = new Appointment();
         while (flag) {
             String patientUsername = appointment.getCurrentPatient();
-            System.out.println("1. Enter data for Current Patient");
+            if(patientUsername == ""){
+            System.out.println("No patient available currently");
+            }else{
+                System.out.println("1. Enter data for Current Patient");
+            }          
+            
             System.out.println("2. Get Information of Next Patient");
             System.out.println("3. Check history of Current Patient");
             System.out.println("0. Logout");
@@ -28,16 +36,18 @@ public class DoctorLogin {
             Scanner dockDashboardOptions = new Scanner(System.in);
             switch (dockDashboardOptions.nextInt()) {
                 case 1:
+                    if(patientUsername != ""){
                     dockDashboardOptions.nextLine();
                     setDataCurrPatient(patientUsername);
+                    }
                     break;
                 case 2:
                     dockDashboardOptions.nextLine();
-                    appointment.getNextPatient();
+//                    appointment.getNextPatient();
                     break;
                 case 3:
                     dockDashboardOptions.nextLine();
-                    appointment.getPatientHistory(username);
+//                    appointment.getPatientHistory(username);
                     break;
                 case 0:
                     flag = false;
@@ -90,5 +100,22 @@ public class DoctorLogin {
     }
     void storeData(String patientUsername,String bloodSugar,String heartBeats,String weight,String symptoms,String prescription ){
         //store data in excel file
+        int i =0;
+        Date date = new Date();
+        String[] data = new String[10];
+        data[i++]= patientUsername;
+        data[i++]= bloodSugar;
+        data[i++]= heartBeats;
+        data[i++]= weight;
+        data[i++]= symptoms;
+        data[i++]= prescription;
+        data[i++]= date.toString();
+        
+        WriteToExcel patientRecord = new WriteToExcel();
+//                String[] dataa = {"Pal","kotvir","pallavi@gmail.com","Asdf@123","14-081995","Female","9916067559"};
+                try{
+                patientRecord.writeData(CommonVariables.patientRecordsFileName, CommonVariables.patientRecordsLabels, data );
+                }catch(Exception e){
+                }
     }
 }

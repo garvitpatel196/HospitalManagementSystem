@@ -6,7 +6,9 @@
 package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
+import hospitalmanagementsystem.models.ScheduleModel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import shared.*;
 /**
@@ -30,7 +32,7 @@ public class ReceptionistLogin {
             Scanner receptionistDashboardOptions = new Scanner(System.in);
             switch (receptionistDashboardOptions.nextInt()) {
                 case 1:
-                    getAllAppointments();
+                    listAllAppointments();
                     break;
                 case 2:
                     scheduleNewAppointment();
@@ -51,37 +53,26 @@ public class ReceptionistLogin {
         Scanner slotOption = new Scanner(System.in);
         System.out.print("Enter Patient username: ");
         String patientUsername = slotOption.nextLine();
-        
-        if (isValidUser(patientUsername)){
-            System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
-            ArrayList<String> availableSlots;
-            Appointment appointment = new Appointment();
-            availableSlots = appointment.fetchAvailableSlot();
-            for (int i = 0; i < availableSlots.size(); i++) {
-                System.out.println((i + 1) + ". " + availableSlots.get(i));
-            }
-            System.out.print("Please enter option: ");
-            int timeId = slotOption.nextInt();
-            appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
+        System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
+        ArrayList<String> availableSlots;
+        Appointment appointment = new Appointment();
+        availableSlots = appointment.fetchAvailableSlot();
+        for (int i = 0; i < availableSlots.size(); i++) {
+            System.out.println((i + 1) + ". " + availableSlots.get(i));
         }
-        else{
-            System.out.println("\n\n" +ANSI_RED+"Invalid Username...!"+ANSI_RESET);
-        }
+        System.out.print("Please enter option: ");
+        int timeId = slotOption.nextInt();
+        appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
     }
-    boolean isValidUser(String username){
-        //pallavi check username if it is a valid username or not
-        boolean valid=true;
-        return valid;
-    }
-    ArrayList<String> getAllAppointments() {
+    void listAllAppointments() {
         //pallavi fetch appointment of data from excel file
         //required fields Fname, Lname, Gender, phno, time 
-        ArrayList<String> appointmentTime = new ArrayList<>();
-        appointmentTime.add("09:00 AM to 10:00 AM");
-        appointmentTime.add("10:00 AM to 11:00 AM");
-        appointmentTime.add("11:00 AM to 12:00 PM");
-        
-        return appointmentTime;
+        Appointment app= new Appointment();
+        ArrayList<ScheduleModel> allAppointments= app.getAllAppointments();
+//        ArrayList<String> appointmentDetails = new ArrayList<>();
+        for(int row=0; row<allAppointments.size();row++){
+            System.out.println(ANSI_CYAN_BACKGROUND +"Patient Name:"+allAppointments.get(row).getUsername()+"--->"+"Timing:"+allAppointments.get(row).getTiming()+ ANSI_RESET);
+        }
     }
     void printInvoice(String patientUsername){
         Scanner invoiceScanner = new Scanner(System.in);

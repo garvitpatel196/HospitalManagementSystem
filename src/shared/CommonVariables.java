@@ -18,5 +18,8 @@ public class CommonVariables {
        public static String userRecordFileName = "user_record.xls";
         public static String[] appointmentLabels = {"timeId","username","timing"};
        public static String appointmentLabelsFileName = "appointment_schedule.xls";
+       public static String[] patientRecordsLabels = {"username","Blood_Sugar","Heart_Beat","Enter_Weight","Symptoms","Prescription","date&Time"};
+       public static String patientRecordsFileName = "patient_records.xls";
+       
        
 }
