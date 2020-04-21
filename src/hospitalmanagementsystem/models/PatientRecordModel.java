@@ -11,21 +11,23 @@ import java.util.ArrayList;
  *
  * @author NIAR Tech
  */
-public class patientRecordModel {
+public class PatientRecordModel {
     private String username;
     private String bloodSugar;
     private String heartBeats;
     private String weight;
     private String symptoms;
     private String prescription;
+    private String date;
     
-    public patientRecordModel(ArrayList<String> dataObj){
+    public PatientRecordModel(ArrayList<String> dataObj){
     this.username = dataObj.get(0);
     this.bloodSugar = dataObj.get(1);
     this.heartBeats = dataObj.get(2);
     this.weight = dataObj.get(3);
     this.symptoms = dataObj.get(4);
     this.prescription = dataObj.get(5);
+    this.date = dataObj.get(6);
     }
 
     public String getUsername() {
@@ -75,6 +77,15 @@ public class patientRecordModel {
     public void setPrescription(String prescription) {
         this.prescription = prescription;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
     
     
 }

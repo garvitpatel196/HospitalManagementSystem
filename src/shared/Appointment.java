@@ -5,15 +5,15 @@
  */
 package shared;
 
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_GREEN;
+import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RED;
 import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
 import hospitalmanagementsystem.models.ScheduleModel;
+import hospitalmanagementsystem.models.PatientRecordModel;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Date;
-=======
 import java.util.HashMap;
->>>>>>> 00fbd2771abe8231d059b1e53ac84a5566d24333
 
 /**
  *
@@ -46,14 +46,32 @@ public class Appointment {
         }
     }
     public void getPatientHistory(String username){
-        System.out.println("History of patient...............");
+        System.out.println(ANSI_CYAN_BACKGROUND+"-----------------------History of patient----------------------- \n"+ANSI_RESET);
+        ArrayList<PatientRecordModel> patientRecords = new ArrayList<PatientRecordModel>();
+//        ArrayList<String> appointmentTime = new  ArrayList<String>();
+        ReadFromExcel readClass = new ReadFromExcel();
+        patientRecords = readClass.readPatientRecords("history",CommonVariables.patientRecordsFileName);
+        for(int row=0; row<patientRecords.size();row++){
+            if(username.equals(patientRecords.get(row).getUsername())){
+            System.out.println(ANSI_RED+"Consulted Date: \t"+patientRecords.get(row).getDate()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+"Enter Data for Patient: \t" + username+ANSI_RESET);
+            System.out.println(ANSI_GREEN+"Enter Blood Sugar: \t"+patientRecords.get(row).getBloodSugar()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+"Heart Beats: \t"+patientRecords.get(row).getHeartBeats()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+"Enter Weight: \t"+patientRecords.get(row).getWeight()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+"Symptoms: \t"+patientRecords.get(row).getSymptoms()+ANSI_RESET);
+            System.out.println(ANSI_GREEN+"Prescription: \t"+patientRecords.get(row).getPrescription()+ANSI_RESET);
+            
+            }
+            System.out.println(ANSI_CYAN_BACKGROUND+"------------------------------------------------------------------ \n"+ANSI_RESET);
+        }
+        
     }
     public String getCurrentPatient(){
         Date date = new Date();
         int hours = date.getHours();
         String username = "";
 //        int minutes = date.getMinutes();
-        System.out.println(hours+"i love to code");
+//        System.out.println(hours+"i love to code");
         ArrayList<ScheduleModel> scheduleRecords = getAllAppointments();
 //        ArrayList<String> appointmentTime = new  ArrayList<String>();
 //        ReadFromExcel readClass = new ReadFromExcel();

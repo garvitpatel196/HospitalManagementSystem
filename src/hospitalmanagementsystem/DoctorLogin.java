@@ -18,7 +18,7 @@ import shared.WriteToExcel;
  */
 public class DoctorLogin {
     void docterDashboard(String username) {
-        System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"\n\nWelcome " + username + " to the doctor's dashboard \n \n"+ANSI_RESET);
+        System.out.println("\n"+ANSI_CYAN_BACKGROUND+"Welcome " + username + " to the doctor's dashboard"+ANSI_RESET+"\n");
         boolean flag = true;
         Appointment appointment = new Appointment();
         while (flag) {
@@ -30,7 +30,11 @@ public class DoctorLogin {
             }          
             
             System.out.println("2. Get Information of Next Patient");
+            if(patientUsername != ""){
             System.out.println("3. Check history of Current Patient");
+            }else{
+                System.out.println("3. Check history of any Patient");
+            }
             System.out.println("0. Logout");
             System.out.print("Please select any option from above list:");
             Scanner dockDashboardOptions = new Scanner(System.in);
@@ -46,8 +50,15 @@ public class DoctorLogin {
 //                    appointment.getNextPatient();
                     break;
                 case 3:
+                    if(patientUsername != ""){
                     dockDashboardOptions.nextLine();
-//                    appointment.getPatientHistory(username);
+                    appointment.getPatientHistory(username);
+                    }else{
+                    System.out.println("Enter username of the patient");
+                    Scanner writeUsername = new Scanner(System.in);
+                    String name = writeUsername.nextLine();
+                    appointment.getPatientHistory(name);
+                    }
                     break;
                 case 0:
                     flag = false;

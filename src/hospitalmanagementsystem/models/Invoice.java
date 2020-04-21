@@ -1,4 +1,4 @@
-package hospitalmanagementsystem;
+package hospitalmanagementsystem.models;
 
 import java.io.Serializable;
 

@@ -28,12 +28,14 @@ public class ReadFromExcel {
     ArrayList<String> dataObj = new ArrayList<String>();
     ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();
     ArrayList<ScheduleModel> ScheduleList = new ArrayList<ScheduleModel>();
+    ArrayList<PatientRecordModel> patientRecordList = new ArrayList<PatientRecordModel>();
 
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;
     try {
 
             workbook = Workbook.getWorkbook(new File(path));
+//            System.out.println(workbook+"------abcd");
             Sheet sheet = workbook.getSheet(0);
 //            System.out.println(sheet.getRows()+"---------------123232-----------");
             for (int rowCount=1 ; rowCount < sheet.getRows() ; rowCount++){
@@ -52,14 +54,18 @@ public class ReadFromExcel {
                         ScheduleList.add(scheduleModel);
                         dataObj.clear();
                         break;
-                        
+                    case "history":
+                        PatientRecordModel patientRecordModel = new PatientRecordModel(dataObj);
+                        patientRecordList.add(patientRecordModel);
+                        dataObj.clear();
+                        break;
                 }
 //                System.out.println(dataObj.get(0));
             }
            
 
         } catch (Exception e) {
-            e.printStackTrace();
+           System.out.println("NO users in the record.");
         } 
     }
     
@@ -70,6 +76,11 @@ public class ReadFromExcel {
     public ArrayList<ScheduleModel> readScheduleRecords(String fromClass, String fileName){
         readData(fromClass,fileName);
         return ScheduleList;
+    }
+    
+     public ArrayList<PatientRecordModel> readPatientRecords(String fromClass, String fileName){
+        readData(fromClass,fileName);
+        return patientRecordList;
     }
     
     
