@@ -19,7 +19,7 @@ public class DoctorLogin {
         boolean flag = true;
         Appointment appointment = new Appointment();
         while (flag) {
-            System.out.println("Current Patient Details:\n"+ appointment.getCurrentPatient());
+            String patientUsername = appointment.getCurrentPatient();
             System.out.println("1. Enter data for Current Patient");
             System.out.println("2. Get Information of Next Patient");
             System.out.println("3. Check history of Current Patient");
@@ -29,12 +29,14 @@ public class DoctorLogin {
             switch (dockDashboardOptions.nextInt()) {
                 case 1:
                     dockDashboardOptions.nextLine();
-                    setDataCurrPatient(username);
+                    setDataCurrPatient(patientUsername);
                     break;
                 case 2:
+                    dockDashboardOptions.nextLine();
                     appointment.getNextPatient();
                     break;
                 case 3:
+                    dockDashboardOptions.nextLine();
                     appointment.getPatientHistory(username);
                     break;
                 case 0:
@@ -46,23 +48,31 @@ public class DoctorLogin {
             }
         }
     }
-    void setDataCurrPatient(String username) {
+    void setDataCurrPatient(String patientUsername) {
         Scanner currPatientDataInput = new Scanner(System.in);
         boolean flag = true;
         while (flag) {
-            System.out.println("Enter Data for Patient " + username);
-            System.out.print("Enter Blood Sugar: " + currPatientDataInput.nextLine());
-            System.out.print("Heart Beats: " + currPatientDataInput.nextLine());
-            System.out.print("Enter Weight: " + currPatientDataInput.nextLine());
-            System.out.print("Symptoms: " + currPatientDataInput.nextLine());
-            System.out.print("Prescription: " + currPatientDataInput.nextLine());
-            System.out.println("\n\n1. Save");
+            System.out.println("Enter Data for Patient " + patientUsername);
+            System.out.print("Enter Blood Sugar: ");
+            String bloodSugar = currPatientDataInput.nextLine();
+            System.out.print("Heart Beats: ");
+            String heartBeats = currPatientDataInput.nextLine();
+            System.out.print("Enter Weight: ");
+            String weight = currPatientDataInput.nextLine();
+            System.out.print("Symptoms: ");
+            String symptoms = currPatientDataInput.nextLine();
+            System.out.print("Prescription: ");
+            String prescription= currPatientDataInput.nextLine();
+           
+            System.out.println("\n\n");
+            System.out.println("1. Save");
             System.out.println("2. Renter data");
             System.out.println("0. Go back to main menu without saving");
             System.out.println("Please select any one option from above list: ");
             switch (currPatientDataInput.nextInt()) {
                 case 1:
                     currPatientDataInput.nextLine();
+                    storeData(patientUsername,bloodSugar,heartBeats,weight,symptoms,prescription);
                     System.out.println("Data is saved.");
                     flag = false;
                     break;
@@ -78,11 +88,7 @@ public class DoctorLogin {
             currPatientDataInput.nextLine();
         }
     }
-    void getDataNextPatient() {
-        System.out.println("Next Patient Data:");
-        System.out.println("Name: Garvit Patel");
-        System.out.println("Age: 23");
-        System.out.println("Phone Number: 4372497878");
-        System.out.println("\n\n");
+    void storeData(String patientUsername,String bloodSugar,String heartBeats,String weight,String symptoms,String prescription ){
+        //store data in excel file
     }
 }

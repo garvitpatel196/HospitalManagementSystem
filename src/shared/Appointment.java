@@ -43,12 +43,14 @@ public class Appointment {
         System.out.println("History of patient...............");
     }
     public String getCurrentPatient(){
-        String userDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
-        return userDetails;
+        String patientDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
+        System.out.println("Patient Details:\n"+patientDetails);
+        return "username";
     }
     public String getNextPatient(){
         //check according to appointment time and current time
-        String userDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
-        return userDetails;
+        String patientDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
+        System.out.println("Patient Details:\n"+patientDetails);
+        return "username";
     }
 }
