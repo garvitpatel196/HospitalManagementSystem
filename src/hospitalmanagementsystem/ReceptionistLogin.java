@@ -19,10 +19,12 @@ public class ReceptionistLogin {
         System.out.println("\n==========================================================================");
         System.out.println("\n" + ANSI_CYAN_BACKGROUND + "Welcome " + username + " to the Receptionist's dashboard" + ANSI_RESET);
         boolean flag = true;
+        Appointment appointment = new Appointment();
         while (flag) {
+            String patientUsername = appointment.getCurrentPatient();
             System.out.println("1. List all the upcoming appointments");
             System.out.println("2. Book New Appointment");
-            System.out.println("3. Check History");
+            System.out.println("3. Print the invoice of current Patient");
             System.out.println("0. Logout");
             System.out.print("Please select any option from above list:");
             Scanner receptionistDashboardOptions = new Scanner(System.in);
@@ -34,8 +36,7 @@ public class ReceptionistLogin {
                     scheduleNewAppointment();
                     break;
                 case 3:
-                    Appointment appointment = new Appointment();
-                    appointment.getPatientHistory(username);
+                    printInvoice(patientUsername);
                     break;
                 case 0:
                     flag = false;
@@ -81,5 +82,15 @@ public class ReceptionistLogin {
         appointmentTime.add("11:00 AM to 12:00 PM");
         
         return appointmentTime;
+    }
+    void printInvoice(String patientUsername){
+        Scanner invoiceScanner = new Scanner(System.in);
+        System.out.println("Please enter appointment charge:");
+        float appointmentCharges = Float.parseFloat(invoiceScanner.nextLine());
+        System.out.println("Please enter Medicine charge:");
+        float medicineCharges = Float.parseFloat(invoiceScanner.nextLine());
+        float GST = (appointmentCharges*13)/100;
+        float total = appointmentCharges + medicineCharges + GST;
+        System.out.println(total);
     }
 }
