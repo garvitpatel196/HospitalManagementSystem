@@ -93,7 +93,7 @@ public class ReceptionistLogin {
         HashMap<String, String> userDetails = appointment.getUserDetails(patientUsername);
         
         //Invoice invoice = new Invoice("John","Frost",22,"Med1",250,"Credit Card");
-        Invoice invoice = new Invoice(userDetails.get("name"),userDetails.get("phone"),userDetails.get("gender"),total,paymentMethod);
+        Invoice invoice = new Invoice(userDetails.get("name"),userDetails.get("phone"),userDetails.get("gender"),appointmentCharges,medicineCharges,GST,total,paymentMethod);
         WriteObjectToFile(invoice);
     }
     void WriteObjectToFile(Object serObj) {

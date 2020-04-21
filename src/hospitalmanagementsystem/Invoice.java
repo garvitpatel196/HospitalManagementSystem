@@ -10,7 +10,10 @@ public class Invoice implements Serializable {
     private String payment_method;
     private String phone;
     private String gender;
-    public Invoice(String p_name,String phone, String gender, float amount, String payment_method) {
+    private float appointmentCharges;
+    private float medicineCharges;
+    private float GST;
+    public Invoice(String p_name,String phone, String gender,float appointmentCharges,float medicineCharges,float GST, float amount, String payment_method) {
         this.name = p_name;
         this.amount = amount;
         this.payment_method = payment_method;
@@ -24,6 +27,30 @@ public class Invoice implements Serializable {
 
     public String getName() {
         return this.name;
+    }
+
+    public float getAppointmentCharges() {
+        return appointmentCharges;
+    }
+
+    public void setAppointmentCharges(float appointmentCharges) {
+        this.appointmentCharges = appointmentCharges;
+    }
+
+    public float getMedicineCharges() {
+        return medicineCharges;
+    }
+
+    public void setMedicineCharges(float medicineCharges) {
+        this.medicineCharges = medicineCharges;
+    }
+
+    public float getGST() {
+        return GST;
+    }
+
+    public void setGST(float GST) {
+        this.GST = GST;
     }
 
     public void setAmount(int amount) {
@@ -60,6 +87,17 @@ public class Invoice implements Serializable {
 
     @Override
     public String toString() {
-        return new StringBuffer("Name: ").append(this.name).append("Phone Number:").append(this.phone).append("Gender").append(this.gender).append("Amount: ").append(this.amount).append("Payment Type: ").append(this.payment_method).toString();
+        return new StringBuffer("Name: ").append(this.name)
+                .append("Phone Number:").append(this.phone)
+                .append("Gender").append(this.gender)
+                .append("Payment Type: ").append(this.payment_method)
+                .append("============================================================")
+                .append("Appointment Charge: "+"\t\t\t").append(this.appointmentCharges)
+                .append("Medicine Charge: "+"\t\t\t").append(this.medicineCharges)
+                .append("GST 13%"+"\t\t\t").append(this.GST)
+                .append("============================================================")
+                .append("Total: "+"\t\t\t").append(this.amount)
+                .append("\t\t\t"+"Signature: ").append("_____________")
+                .toString();
     }
 }
