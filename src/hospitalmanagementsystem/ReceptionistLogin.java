@@ -8,7 +8,7 @@ package hospitalmanagementsystem;
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import shared.*;
 /**
  *
  * @author gpatel
@@ -45,21 +45,22 @@ public class ReceptionistLogin {
             }
         }
     }
-
     void scheduleNewAppointment() {
-        System.out.println("Please enter the ussername of the Patient:");
-        Scanner userScan = new Scanner(System.in);
-        String username = userScan.nextLine();
-        if (isValidUser(username)){
+        Scanner slotOption = new Scanner(System.in);
+        System.out.print("Enter Patient username: ");
+        String patientUsername = slotOption.nextLine();
+        
+        if (isValidUser(patientUsername)){
             System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
             ArrayList<String> availableSlots;
+            Appointment appointment = new Appointment();
             availableSlots = fetchAvailableSlot();
             for (int i = 0; i < availableSlots.size(); i++) {
                 System.out.println((i + 1) + ". " + availableSlots.get(i));
             }
-            Scanner slotOption = new Scanner(System.in);
             System.out.print("Please enter option: ");
-            setAppointment(availableSlots.get(slotOption.nextInt() - 1),username);
+            int timeId = slotOption.nextInt();
+            appointment.setAppointment(availableSlots.get(timeId - 1),patientUsername,timeId);
         }
         else{
             System.out.println("\n\n" +ANSI_RED+"Invalid Username...!"+ANSI_RESET);

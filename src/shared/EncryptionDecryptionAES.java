@@ -31,7 +31,7 @@ public class EncryptionDecryptionAES {
     secretKey = CommonVariables.secretKey;
     }
     
-	public static String encrypt(String strToEncrypt, String secret) 
+	public static String encrypt(String strToEncrypt) 
         {
             try
             {
@@ -54,7 +54,7 @@ public class EncryptionDecryptionAES {
             return null;
         }
         
-        public static String decrypt(String strToDecrypt, String secret) 
+        public static String decrypt(String strToDecrypt) 
         {
             try
             {
