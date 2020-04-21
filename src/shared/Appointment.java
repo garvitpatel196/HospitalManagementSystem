@@ -80,11 +80,11 @@ public class Appointment {
 //        ArrayList<String> appointmentTime = new  ArrayList<String>();
 //        ReadFromExcel readClass = new ReadFromExcel();
 //        scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
-        System.out.println(scheduleRecords.size());
+//        System.out.println(scheduleRecords.size());
         for (ScheduleModel scheduleRecord : scheduleRecords) {
             String timing = scheduleRecord.getTiming();
             String[] scheduleHour = timing.split(":");
-            System.out.println("----->"+scheduleHour[0]+"--->"+timing);
+//            System.out.println("----->"+scheduleHour[0]+"--->"+timing);
             if (Integer.parseInt(scheduleHour[0]) == hours) {
                 username = scheduleRecord.getUsername();
             }
@@ -99,11 +99,31 @@ public class Appointment {
         scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
         return scheduleRecords;
     }
-    public String getNextPatient(){
+    public void getNextPatient(){
         //check according to appointment time and current time
-        String patientDetails = "Patient User Name | "+" Patient Name | "+" Patient Phone Number | "+" Patient gender |"+" Booked Time Slot | ";
-        System.out.println("Patient Details:\n"+patientDetails);
-        return "username";
+         ArrayList<ScheduleModel> allAppointments= getAllAppointments();
+//        ArrayList<String> appointmentDetails = new ArrayList<>();
+        System.out.println("\n"+ANSI_CYAN_BACKGROUND +"Next In Line"+ ANSI_RESET);
+         Date date = new Date();
+         int temp = 99;
+         String Username = "";
+         String Timing = "";
+        for (ScheduleModel nextApp : allAppointments){           
+            String timing = nextApp.getTiming();
+            String[] scheduleHour = timing.split(":");
+            if((Integer.parseInt(scheduleHour[0]) > date.getHours()) && (Integer.parseInt(scheduleHour[0]) < temp)){
+                temp = Integer.parseInt(scheduleHour[0]);
+                Username=nextApp.getUsername();
+                Timing = nextApp.getTiming();
+            }
+        }
+        if(Username!=""){
+            String patientDetails = "Patient User Name : "+Username+ "=====>   Booked Time Slot : "+Timing;
+            System.out.println(ANSI_RED+patientDetails+ANSI_RESET+"\n");
+        }else{
+            System.out.println(ANSI_RED+"No patient in line"+ANSI_RESET);
+        }
+//        return "username";
     }
     public HashMap<String, String> getUserDetails(String patientUsername){
         // fetch all data and store in HashMap

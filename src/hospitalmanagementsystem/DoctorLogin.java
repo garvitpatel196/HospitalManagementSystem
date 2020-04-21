@@ -47,7 +47,7 @@ public class DoctorLogin {
                     break;
                 case 2:
                     dockDashboardOptions.nextLine();
-//                    appointment.getNextPatient();
+                    appointment.getNextPatient();
                     break;
                 case 3:
                     if(patientUsername != ""){
