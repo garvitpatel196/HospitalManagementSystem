@@ -35,7 +35,8 @@ public class PatientLogin {
                     System.out.println("\n"+ANSI_GREEN+"You have an appointment with doctor at "+getMyAppointment()+ANSI_RESET+"\n");
                     break;
                 case 3:
-                    
+                    Appointment appointment = new Appointment();
+                    appointment.getPatientHistory(username);
                     break;
                 case 0:
                     flag = false;
@@ -56,7 +57,7 @@ public class PatientLogin {
         }
         Scanner slotOption = new Scanner(System.in);
         System.out.print("Please enter option: ");
-       int timeId = slotOption.nextInt();
+        int timeId = slotOption.nextInt();
         appointment.setAppointment(availableSlots.get(timeId - 1),username,timeId);
     }
     
@@ -65,6 +66,4 @@ public class PatientLogin {
         String appointmentTime = "11:00 AM to 12:00 PM";
         return appointmentTime;
     }
-    
-    
 }

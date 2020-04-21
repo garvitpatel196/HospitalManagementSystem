@@ -34,7 +34,8 @@ public class ReceptionistLogin {
                     scheduleNewAppointment();
                     break;
                 case 3:
-                    
+                    Appointment appointment = new Appointment();
+                    appointment.getPatientHistory(username);
                     break;
                 case 0:
                     flag = false;
@@ -54,7 +55,7 @@ public class ReceptionistLogin {
             System.out.println("\n" + ANSI_YELLOW + "Select the slot from below available time" + ANSI_RESET);
             ArrayList<String> availableSlots;
             Appointment appointment = new Appointment();
-            availableSlots = fetchAvailableSlot();
+            availableSlots = appointment.fetchAvailableSlot();
             for (int i = 0; i < availableSlots.size(); i++) {
                 System.out.println((i + 1) + ". " + availableSlots.get(i));
             }
@@ -71,21 +72,6 @@ public class ReceptionistLogin {
         boolean valid=true;
         return valid;
     }
-    ArrayList<String> fetchAvailableSlot() {
-        ArrayList<String> slots = new ArrayList<>();
-        //pallavi fetch data from excel and add in slots
-        slots.add("09:00 AM to 10:00 AM");
-        slots.add("10:00 AM to 11:00 AM");
-        slots.add("11:00 AM to 12:00 PM");
-        slots.add("12:00 PM to 01:00 PM");
-        return slots;
-    }
-
-    void setAppointment(String appointment, String username) {
-        System.out.println("\n" + ANSI_GREEN + "Your Appointment has been booked for " + appointment + ANSI_RESET + "\n\n");
-        //pallavi store data in excel file
-    }
-
     ArrayList<String> getAllAppointments() {
         //pallavi fetch appointment of data from excel file
         //required fields Fname, Lname, Gender, phno, time 

@@ -7,6 +7,7 @@ package hospitalmanagementsystem;
 
 import static hospitalmanagementsystem.HospitalManagementSystem.*;
 import java.util.Scanner;
+import shared.Appointment;
 
 /**
  *
@@ -16,8 +17,10 @@ public class DoctorLogin {
     void docterDashboard(String username) {
         System.out.println("\n\n"+ANSI_CYAN_BACKGROUND+"\n\nWelcome " + username + " to the doctor's dashboard \n \n"+ANSI_RESET);
         boolean flag = true;
+        Appointment appointment = new Appointment();
         while (flag) {
-            System.out.println("1. Enter data for Current Patient's Appointment");
+            System.out.println("Current Patient Details:\n"+ appointment.getCurrentPatient());
+            System.out.println("1. Enter data for Current Patient");
             System.out.println("2. Get Information of Next Patient");
             System.out.println("3. Check history of Current Patient");
             System.out.println("0. Logout");
@@ -29,10 +32,10 @@ public class DoctorLogin {
                     setDataCurrPatient(username);
                     break;
                 case 2:
-                    getDataNextPatient();
+                    appointment.getNextPatient();
                     break;
                 case 3:
-                    getHistoryCurrPatient();
+                    appointment.getPatientHistory(username);
                     break;
                 case 0:
                     flag = false;
@@ -81,9 +84,5 @@ public class DoctorLogin {
         System.out.println("Age: 23");
         System.out.println("Phone Number: 4372497878");
         System.out.println("\n\n");
-    }
-
-    void getHistoryCurrPatient() {
-        System.out.println("Current Patient's History Tab");
     }
 }

@@ -20,8 +20,8 @@ import java.util.ArrayList;
  */
 public class ReadFromExcel {
     Workbook workbook = null;
-    ArrayList<String> dataObj = new ArrayList<String>();
-    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();;
+    ArrayList<String> dataObj = new ArrayList<>();
+    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<>();;
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;
     try {
@@ -45,9 +45,7 @@ public class ReadFromExcel {
             }
            
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (BiffException e) {
+        } catch (IOException | BiffException e) {
             e.printStackTrace();
         } 
     }
