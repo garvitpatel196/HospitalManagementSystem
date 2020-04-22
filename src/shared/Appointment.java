@@ -43,7 +43,7 @@ public class Appointment {
         data[2]=appointment;
         WriteToExcel writetoExcel =  new WriteToExcel();
         try{
-            writetoExcel.writeData(CommonVariables.appointmentLabelsFileName,CommonVariables.appointmentLabels , data);
+            writetoExcel.writeData(CommonVariables.appointmentLabelsFileName,CommonVariables.appointmentLabels , data, CommonVariables.nonSignupClass);
             System.out.println("\n" + ANSI_GREEN + "Your Appoint has been booked for " + appointment + ANSI_RESET + "\n\n");
         }catch(Exception e){
             System.err.println(e);
@@ -121,7 +121,7 @@ public class Appointment {
             String patientDetails = "Patient User Name : "+Username+ "=====>   Booked Time Slot : "+Timing;
             System.out.println(ANSI_RED+patientDetails+ANSI_RESET+"\n");
         }else{
-            System.out.println(ANSI_RED+"No patient in line"+ANSI_RESET);
+            System.out.println(ANSI_RED+"No patient in line"+ANSI_RESET+"\n");
         }
 //        return "username";
     }

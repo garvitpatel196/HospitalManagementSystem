@@ -125,7 +125,7 @@ public class DoctorLogin {
         WriteToExcel patientRecord = new WriteToExcel();
 //                String[] dataa = {"Pal","kotvir","pallavi@gmail.com","Asdf@123","14-081995","Female","9916067559"};
                 try{
-                patientRecord.writeData(CommonVariables.patientRecordsFileName, CommonVariables.patientRecordsLabels, data );
+                patientRecord.writeData(CommonVariables.patientRecordsFileName, CommonVariables.patientRecordsLabels, data, CommonVariables.nonSignupClass );
                 }catch(Exception e){
                 }
     }

@@ -60,14 +60,14 @@ public class SignUp {
             data[counter++] = gender;
             data[counter] = "patient";
             if(checkConstraints(fName, lName, email, password, confirmPassword,phno, dob, gender)){
-                msg=ANSI_GREEN+"Sucessfully Signed Up.!"+ANSI_RESET;
+//                msg=ANSI_GREEN+"Sucessfully Signed Up.!"+ANSI_RESET;
                 WriteToExcel newUserRecord = new WriteToExcel();
 //                String[] dataa = {"Pal","kotvir","pallavi@gmail.com","Asdf@123","14-081995","Female","9916067559"};
                 try{
-                newUserRecord.writeData(CommonVariables.userRecordFileName, CommonVariables.userRecordLabels, data );
+                newUserRecord.writeData(CommonVariables.userRecordFileName, CommonVariables.userRecordLabels, data, CommonVariables.signupClass );
                 }catch(Exception e){
                 }
-                System.out.println(msg);
+//                System.out.println(msg);
                 System.out.println("\n\nRedirecting to main menu....\n\n");
                 signUpLoop = false;
             }

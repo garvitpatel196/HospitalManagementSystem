@@ -20,6 +20,7 @@ public class CommonVariables {
        public static String appointmentLabelsFileName = "appointment_schedule.xls";
        public static String[] patientRecordsLabels = {"username","Blood_Sugar","Heart_Beat","Enter_Weight","Symptoms","Prescription","date&Time"};
        public static String patientRecordsFileName = "patient_records.xls";
-       
+       public static String signupClass = "signup";
+       public static String nonSignupClass = "no";
        
 }
