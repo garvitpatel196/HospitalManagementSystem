@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author NIAR Tech
  */
 public class UserRecordModel {
+
     private String fname = "";
     private String lname = "";
     private String email = "";
@@ -20,15 +21,15 @@ public class UserRecordModel {
     private String phoneNo = "";
     private String gender = "";
     private String userType = "";
-    
-    public UserRecordModel(ArrayList<String> dataObj){
+
+    public UserRecordModel(ArrayList<String> dataObj) {
         this.fname = dataObj.get(0);
         this.lname = dataObj.get(1);
         this.email = dataObj.get(2);
         this.pwd = dataObj.get(3);
         this.dob = dataObj.get(4);
         this.phoneNo = dataObj.get(5);
-        this.gender=dataObj.get(6);
+        this.gender = dataObj.get(6);
         this.userType = dataObj.get(7);
     }
 
@@ -86,7 +87,7 @@ public class UserRecordModel {
 
     public void setGender(String gender) {
         this.gender = gender;
-    } 
+    }
 
     public String getUserType() {
         return userType;
@@ -95,7 +96,5 @@ public class UserRecordModel {
     public void setUserType(String userType) {
         this.userType = userType;
     }
-   
-    
-    
+
 }

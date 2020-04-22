@@ -19,6 +19,9 @@ public class Invoice implements Serializable {
         this.payment_method = payment_method;
         this.phone = phone;
         this.gender = gender;
+        this.GST=GST;
+        this.medicineCharges=medicineCharges;
+        this.appointmentCharges = appointmentCharges;
     }
 
     public void setName(String name) {
