@@ -51,6 +51,7 @@ public class PatientLogin {
                     break;
                 case 0:
                     flag = false;
+                    System.out.println("\nYou have been Successfully Logged-Out");
                     break;
                 default:
                     System.out.println("Please select valid option.");
