@@ -32,6 +32,9 @@ public class Appointment {
         slots.add("15:00:00 to 16:00:00");
         slots.add("16:00:00 to 17:00:00");
         slots.add("17:00:00 to 18:00:00");
+        slots.add("18:00:00 to 19:00:00");
+        slots.add("19:00:00 to 20:00:00");
+        slots.add("20:00:00 to 21:00:00");
         return slots;
     }
 
