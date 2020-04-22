@@ -53,7 +53,7 @@ public class WriteToExcel {
         wb.write();
         System.out.println(ANSI_GREEN+"Sucessfully Signed Up.!"+ANSI_RESET);
         wb.close();
-        System.out.println("Workbook is created");
+//        System.out.println("Workbook is created");
         }else{
         System.out.println(ANSI_RED+"User already exists"+ANSI_RESET);
         }

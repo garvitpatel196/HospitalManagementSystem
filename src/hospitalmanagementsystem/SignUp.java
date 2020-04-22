@@ -56,7 +56,7 @@ public class SignUp {
             String dob = signUpOption.nextLine();
             data[counter++] = dob;
             System.out.print("Please Enter your Gender M/F/O: ");
-            String gender = signUpOption.nextLine();
+            String gender = signUpOption.nextLine().toUpperCase();
             data[counter++] = gender;
             data[counter] = "patient";
             if(checkConstraints(fName, lName, email, password, confirmPassword,phno, dob, gender)){

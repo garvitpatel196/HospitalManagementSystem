@@ -16,9 +16,9 @@ import jxl.Workbook;
 import java.io.File;
 import java.util.ArrayList;
 
-import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_CYAN_BACKGROUND;
-import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RESET;
-import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RED;
+import static hospitalmanagementsystem.HospitalManagementSystem.*;
+import java.io.IOException;
+import jxl.read.biff.BiffException;
 /**
  *
  * @author NIAR Tech
@@ -26,10 +26,10 @@ import static hospitalmanagementsystem.HospitalManagementSystem.ANSI_RED;
 public class ReadFromExcel {
     Workbook workbook = null;
 
-    ArrayList<String> dataObj = new ArrayList<String>();
-    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<UserRecordModel>();
-    ArrayList<ScheduleModel> ScheduleList = new ArrayList<ScheduleModel>();
-    ArrayList<PatientRecordModel> patientRecordList = new ArrayList<PatientRecordModel>();
+    ArrayList<String> dataObj = new ArrayList<>();
+    ArrayList<UserRecordModel> userRecorddataList = new ArrayList<>();
+    ArrayList<ScheduleModel> ScheduleList = new ArrayList<>();
+    ArrayList<PatientRecordModel> patientRecordList = new ArrayList<>();
 
     private void readData(String fromClass, String fileName){
         String path = CommonVariables.directoryPath+fileName;
@@ -65,7 +65,7 @@ public class ReadFromExcel {
             }
            
 
-        } catch (Exception e) {
+        } catch (IOException | BiffException | IndexOutOfBoundsException e) {
            System.out.println(ANSI_RED+"No record found."+ANSI_RESET+"\n");
         } 
     }

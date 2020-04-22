@@ -63,26 +63,29 @@ public class PatientLogin {
         ArrayList<String> availableSlots;
         Appointment appointment = new Appointment();
         availableSlots = appointment.fetchAvailableSlot();
-//        for(int i=0; i < availableSlots.size(); i++){
-//            System.out.println((i+1)+". "+availableSlots.get(i));
-//        }
+        for(int i=0; i < availableSlots.size(); i++){
+            System.out.println((i+1)+". "+availableSlots.get(i));
+        }
+        System.out.println("0. Cancel");
         Scanner slotOption = new Scanner(System.in);
         System.out.print("Please enter option: ");
         int timeId = slotOption.nextInt();
-        appointment.setAppointment(availableSlots.get(timeId - 1),username,timeId);
+        if(timeId != 0){
+            appointment.setAppointment(availableSlots.get(timeId - 1),username,timeId);
+        }
     }
     
      ArrayList<String> getMyAppointment(String patientName){
         //pallavi fetch appointment of data from excel file
-        ArrayList<ScheduleModel> scheduleRecords = new ArrayList<ScheduleModel>();
-        ArrayList<String> appointmentTime = new  ArrayList<String>();
+        ArrayList<ScheduleModel> scheduleRecords = new ArrayList<>();
+        ArrayList<String> appointmentTime = new  ArrayList<>();
         ReadFromExcel readClass = new ReadFromExcel();
         scheduleRecords = readClass.readScheduleRecords("schedule",CommonVariables.appointmentLabelsFileName);
-        for(int row =0 ; row<scheduleRecords.size();row++){
-            if(scheduleRecords.get(row).getUsername().equals(patientName)){
-            appointmentTime.add(scheduleRecords.get(row).getTiming());
+        for (ScheduleModel scheduleRecord : scheduleRecords) {
+            if (scheduleRecord.getUsername().equals(patientName)) {
+                appointmentTime.add(scheduleRecord.getTiming());
             }
-//        System.out.println(scheduleRecords.get(row).getTiming());
+            System.out.println(scheduleRecord.getTiming());
         }
         return appointmentTime;
     }
