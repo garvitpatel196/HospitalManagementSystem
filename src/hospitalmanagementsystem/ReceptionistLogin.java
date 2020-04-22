@@ -46,6 +46,8 @@ public class ReceptionistLogin {
                     break;
                 case 3:
                     printInvoice(patientUsername);
+                    System.out.println("\n" + ANSI_GREEN + "The PDF has been generated." + ANSI_RESET);
+                    System.out.println("\n==========================================================================\n");
                     break;
                 case 0:
                     flag = false;

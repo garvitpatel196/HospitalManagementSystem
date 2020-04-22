@@ -94,7 +94,7 @@ class LoginMenu{
 
         if(isValidLoginCredentials(username,password)){
             System.out.println("Login Successfull");
-            System.out.println("Redirecting to your Dashboard"+userType);
+            System.out.println("Redirecting to " +userType + "'s Dashboard");
                 switch (userType) {
                 case "doctor":
                     DoctorLogin doctorObj = new DoctorLogin();
